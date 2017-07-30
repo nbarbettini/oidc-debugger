@@ -14,11 +14,12 @@ namespace OidcDebugger.ViewModels
 
         public string AuthorizationCode { get; set; }
 
-        public StringValues Query { get; set; }
+        public string State { get; set; }
 
-        public StringValues Form { get; set; }
+        public string ErrorCode { get; set; }
 
-        public StringValues Errors { get; set; }
+        public string ErrorDescription { get; set; }
 
+        public IEnumerable<KeyValuePair<string, string>> Form { get; set; }
     }
 }

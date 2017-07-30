@@ -1,0 +1,22 @@
+﻿body {
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type=text] {
+    width: 300px;
+}
+
+input:invalid {
+    border: 2px dashed red;
+}
+
+input:valid {
+    border: 2px solid black;
+}
+
+.hidden {
+    display: none;
+}

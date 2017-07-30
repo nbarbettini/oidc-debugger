@@ -3,5 +3,49 @@
 }
 
 <div>
-    some stuff here
+    <form id="oidcForm">
+        <div>
+            <label for="authorizeUri">Authorize URI</label>
+            <input type="text" id="authorizeUri" required />
+        </div>
+
+        <div>
+            <label for="redirectUri">Redirect URI</label>
+            <input type="text" id="redirectUri" required />
+        </div>
+
+        <div>
+            <label for="clientId">Client ID</label>
+            <input type="text" id="clientId" required/>
+        </div>
+
+        <div>
+            <label for="scopes">Scopes</label>
+            <input type="text" id="scopes" required value="openid" />
+        </div>
+
+        <div>
+            <label for="responseType">Response type</label>
+            <input type="text" id="responseType" required />
+        </div>
+
+        <div>
+            <label for="state">State</label>
+            <input type="text" id="state" />
+        </div>
+
+        <div>
+            <label for="renderedUri">Request URI:</label>
+            <span id="renderedUri"></span>
+        </div>
+
+        <button id="send">Send request</button>
+    </form>
 </div>
+
+<environment names="Development">
+    <script src="~/js/home.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/home.min.js" asp-append-version="true"></script>
+</environment>
