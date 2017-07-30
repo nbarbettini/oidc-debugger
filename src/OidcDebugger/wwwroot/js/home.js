@@ -16,6 +16,7 @@ function wireUpForm() {
     clientIdInput = document.getElementById('clientId');
     scopesInput = document.getElementById('scopes');
     responseTypeInput = document.getElementById('responseType');
+    responseModeInput = document.getElementById('responseMode');
     stateInput = document.getElementById('state');
     renderedUriSpan = document.getElementById('renderedUri');
 
@@ -60,6 +61,7 @@ function update() {
     generatedUrl += '&redirect_uri=' + encodeURIComponent(redirectUriInput.value);
     generatedUrl += '&scope=' + encodeURIComponent(scopesInput.value);
     generatedUrl += '&response_type=' + encodeURIComponent(responseTypeInput.value);
+    generatedUrl += '&response_mode=' + encodeURIComponent(responseModeInput.value);
 
     var state = stateInput.value;
     if (state && state.length) {

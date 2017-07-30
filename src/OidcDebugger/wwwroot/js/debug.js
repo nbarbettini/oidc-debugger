@@ -3,6 +3,22 @@
 
     window.debugInfo.query = parseValues(window.location.search);
     window.debugInfo.fragment = parseValues(window.location.hash);
+
+    window.debugInfo.code = window.debugInfo.code
+        || findValueInArray(window.debugInfo.query, 'code')
+        || findValueInArray(window.debugInfo.fragment, 'code');
+
+    window.debugInfo.state = window.debugInfo.state
+        || findValueInArray(window.debugInfo.query, 'state')
+        || findValueInArray(window.debugInfo.fragment, 'state');
+
+    window.debugInfo.error = window.debugInfo.error
+        || findValueInArray(window.debugInfo.query, 'error')
+        || findValueInArray(window.debugInfo.fragment, 'error');
+
+    window.debugInfo.errorDescription = window.debugInfo.errorDescription
+        || findValueInArray(window.debugInfo.query, 'errorDescription')
+        || findValueInArray(window.debugInfo.fragment, 'errorDescription');
 }
 
 function parseValues(source) {
@@ -11,10 +27,22 @@ function parseValues(source) {
     var vars = source.substring(1).split('&');
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
-        result.push({ name: pair[0], value: pair[1] });
+        if (pair[0] && pair[0].length) {
+            result.push({ name: pair[0], value: pair[1] });
+        }
     }
 
     return result;
+}
+
+function findValueInArray(arr, name) {
+    if (!arr) return null;
+
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].name === name) return arr[i].value;
+    }
+
+    return null;
 }
 
 function update() {
