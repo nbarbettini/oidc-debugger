@@ -1,32 +1,46 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OidcDebugger</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/css/site.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-yellow.min.css" />
+      <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-yellow.min.css" />
+      <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <environment names="Development">
-        <script src="~/js/site.js"></script>
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+      <script src="~/js/site.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+      <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-</head>
-<body>
-    <nav>some nav</nav>
+  </head>
+
+  <body>
+
+    <nav>New Nav</nav>
 
     <div class="body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - OidcDebugger</p>
-        </footer>
+
+      @RenderBody()
+
+      <hr />
+
+      <footer>
+        <p>&copy; 2017 - OidcDebugger</p>
+      </footer>
+
     </div>
-</body>
+  </body>
+
 </html>
