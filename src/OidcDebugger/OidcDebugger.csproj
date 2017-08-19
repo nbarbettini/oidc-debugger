@@ -7,6 +7,12 @@
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\site.css" />
+    <Content Include="wwwroot\js\debug.js" />
+    <Content Include="wwwroot\js\home.js" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
@@ -19,7 +25,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

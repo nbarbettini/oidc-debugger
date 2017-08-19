@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Primitives;
+﻿using System.Collections.Generic;
 
 namespace OidcDebugger.ViewModels
 {
@@ -12,13 +8,14 @@ namespace OidcDebugger.ViewModels
 
         public string Referer { get; set; }
 
-        public string AuthorizationCode { get; set; }
+        public string Code { get; set; }
 
-        public StringValues Query { get; set; }
+        public string State { get; set; }
 
-        public StringValues Form { get; set; }
+        public string Error { get; set; }
 
-        public StringValues Errors { get; set; }
+        public string ErrorDescription { get; set; }
 
+        public IEnumerable<KeyValuePair<string, string>> Form { get; set; }
     }
 }

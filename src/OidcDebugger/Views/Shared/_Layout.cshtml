@@ -12,6 +12,12 @@
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <environment names="Development">
+        <script src="~/js/site.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
@@ -24,14 +30,5 @@
             <p>&copy; 2017 - OidcDebugger</p>
         </footer>
     </div>
-
-    <environment names="Development">
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
