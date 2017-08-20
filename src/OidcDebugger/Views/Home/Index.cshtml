@@ -2,55 +2,95 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div>
-    <form id="oidcForm">
-        <div>
-            <label for="authorizeUri">Authorize URI</label>
-            <input type="text" id="authorizeUri" required />
-        </div>
+<div class="mdl-grid debug__body">
+  <form id="oidcForm" class="mdl-cell mdl-cell--4-col debug__form">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="authorizeUri" class="mdl-textfield__label">
+        Authorize URI
+      </label>
+      <input type="text" id="authorizeUri" class="mdl-textfield__input" required />
+    </div>
 
-        <div>
-            <label for="redirectUri">Redirect URI</label>
-            <input type="text" id="redirectUri" required />
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="redirectUri" class="mdl-textfield__label">
+        Redirect URI
+      </label>
+      <input type="text" id="redirectUri" class="mdl-textfield__input" required />
+    </div>
 
-        <div>
-            <label for="clientId">Client ID</label>
-            <input type="text" id="clientId" required/>
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="clientId" class="mdl-textfield__label">
+        Client ID
+      </label>
+      <input type="text" id="clientId" class="mdl-textfield__input" required/>
+    </div>
 
-        <div>
-            <label for="scopes">Scopes</label>
-            <input type="text" id="scopes" required value="openid" />
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="scopes" class="mdl-textfield__label">
+        Scopes
+      </label>
+      <input type="text" id="scopes" class="mdl-textfield__input" required value="openid" />
+    </div>
 
-        <div>
-            <label for="responseType">Response type</label>
-            <input type="text" id="responseType" required />
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="responseType" class="mdl-textfield__label">
+        Response type
+      </label>
+      <input type="text" id="responseType" class="mdl-textfield__input" required />
+    </div>
 
-        <div>
-            <label for="responseMode">Response mode</label>
-            <input type="text" id="responseMode" required value="query" />
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="responseMode" class="mdl-textfield__label">
+        Response mode
+      </label>
+      <input type="text" id="responseMode" class="mdl-textfield__input" required value="query" />
+    </div>
 
-        <div>
-            <label for="state">State</label>
-            <input type="text" id="state" />
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="state" class="mdl-textfield__label">
+        State
+      </label>
+      <input type="text" id="state" class="mdl-textfield__input" />
+    </div>
 
-        <div>
-            <label for="renderedUri">Request URI:</label>
-            <span id="renderedUri"></span>
-        </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label for="renderedUri" class="mdl-textfield__label">
+        Request URI:
+      </label>
+      <span id="renderedUri" class="mdl-textfield__input"></span>
+    </div>
 
-        <button id="send">Send request</button>
-    </form>
+    <button id="send" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Send request
+    </button>
+  </form>
+
+  <div class="mdl-cell mdl-cell--4-col debug__content"> 
+    <div class="mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Welcome</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Mauris sagittis pellentesque lacus eleifend lacinia...
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Get Started
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+          <i class="material-icons">share</i>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <environment names="Development">
-    <script src="~/js/home.js"></script>
+  <script src="~/js/home.js"></script>
 </environment>
 <environment names="Staging,Production">
-    <script src="~/js/home.min.js" asp-append-version="true"></script>
+  <script src="~/js/home.min.js" asp-append-version="true"></script>
 </environment>
