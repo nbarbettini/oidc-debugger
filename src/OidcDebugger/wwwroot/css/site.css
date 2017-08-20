@@ -18,6 +18,21 @@ input:valid {
   border: 2px solid black;
 }*/
 
+.debug__header {
+  background-color: #00BCD4;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.debug__header-content {
+  max-width: 65%;
+  text-align: center;
+  padding: 1em;
+}
+
+
 .debug__body {
   display: flex;
   justify-content: center;
@@ -27,7 +42,15 @@ input:valid {
 
 }
 
+.debug__footer {
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+}
 
+.debug__footer span {
+  padding: 1em;
+}
 
 .hidden {
   display: none;
