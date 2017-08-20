@@ -1,0 +1,62 @@
+<form id="oidcForm" class="debug__form">
+  <div class="md-form">
+    <label for="authorizeUri" >
+      Authorize URI
+    </label>
+    <input type="text" id="authorizeUri" class="form-control" required />
+  </div>
+
+  <div class="md-form">
+    <label for="redirectUri">
+      Redirect URI
+    </label>
+    <input type="text" id="redirectUri" class="form-control" required />
+  </div>
+
+  <div class="md-form">
+    <label for="clientId">
+      Client ID
+    </label>
+    <input type="text" id="clientId" class="form-control" required/>
+  </div>
+
+  <div class="md-form">
+    <label for="scopes">
+      Scopes
+    </label>
+    <input type="text" id="scopes" class="form-control" required value="openid" />
+  </div>
+
+  <div class="md-form">
+    <label for="responseType">
+      Response type
+    </label>
+    <input type="text" id="responseType" class="form-control" required />
+  </div>
+
+  <div class="md-form">
+    <label for="responseMode">
+      Response mode
+    </label>
+    <input type="text" id="responseMode" class="form-control" required value="query" />
+  </div>
+
+  <div class="md-form">
+    <label for="state">
+      State
+    </label>
+    <input type="text" id="state" class="form-control" />
+  </div>
+
+  <div>
+    <label for="renderedUri">
+      Request URI:
+    </label>
+    <span id="renderedUri" ></span>
+  </div>
+
+  <button id="send" class="btn btn-amber">
+    Send Request
+    <i class="fa fa-paper-plane-o ml-1"></i>
+  </button>
+</form>

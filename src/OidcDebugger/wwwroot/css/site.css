@@ -19,7 +19,7 @@ input:valid {
 }*/
 
 .debug__header {
-  background-color: #00BCD4;
+  background-color: #01579b;
   color: white;
   display: flex;
   justify-content: center;
@@ -33,13 +33,13 @@ input:valid {
 }
 
 
-.debug__body {
+/*.debug__body {
   display: flex;
   justify-content: center;
-}
+}*/
 
 .debug__form {
-
+  
 }
 
 .debug__footer {
@@ -50,6 +50,43 @@ input:valid {
 
 .debug__footer span {
   padding: 1em;
+}
+
+.view {
+  overflow: hidden;
+  position: relative;
+  cursor: default;
+}
+
+.card.card-cascade.wider {
+  background-color: transparent;
+}
+
+.card-header {
+  text-align: center;
+  color: white;
+}
+
+.card-body {
+  padding: 1.8rem 0;
+  margin: 0 1em;
+}
+
+.card-text {
+  font-size: .9rem;
+  color: #747373;
+  margin-bottom: 1rem;
+}
+
+.card.card-cascade.view {
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+  border-radius: 4px;
+  color: white;
+  z-index: 2;
+}
+
+.gradient {
+  background: linear-gradient(40deg,#FFD86F,#FC6262);
 }
 
 .hidden {
