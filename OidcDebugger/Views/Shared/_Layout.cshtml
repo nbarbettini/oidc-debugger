@@ -22,10 +22,15 @@
     </environment>
     <environment names="Development">
       <script src="~/js/site.js"></script>
+      <script src="~/js/util.js"></script>
     </environment>
     <environment names="Staging,Production">
       <script src="~/js/site.min.js" asp-append-version="true"></script>
+      <script src="~/js/util.min.js" asp-append-version="true"></script>
     </environment>
+
+    <!-- TODO: replace with bundled script -->
+    <script src="https://unpkg.com/vue"></script>
   </head>
 
   <body>
