@@ -9,6 +9,7 @@
         responseMode: 'form_post',
         state: '',
         nonce: '',
+        infoCard: ''
     },
     computed: {
         generatedUri: function() {
@@ -29,6 +30,11 @@
             if (this.nonce.length) uri += '&nonce=' + encodeURIComponent(this.nonce);
 
             return uri;
+        }
+    },
+    methods: {
+        showInfo: function(event) {
+            this.infoCard = event.target.id;
         }
     }
 });

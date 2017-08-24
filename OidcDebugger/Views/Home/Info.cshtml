@@ -1,14 +1,30 @@
-<div class="debug__content"> 
+<div class="debug__content" v-show="infoCard === 'authorizeUri'"> 
   <div class="card wider">
     <div class="card-header">
       <h5>
         <i class="fa fa-flash" aria-hidden="true"></i>
-        <strong>About Authorize URI</strong>
+        <strong>Authorize URI</strong>
       </h5>
     </div>
     <div class="card-body text-center">
       <p class="card-text">
-        Disrupt jean shorts viral hella meh, plaid cupidatat magna art party. Echo Park adipisicing literally narwhal. Williamsburg leggings church-key, craft beer forage cornhole jean shorts blue bottle pariatur. Officia sapiente bespoke, locavore plaid cray voluptate deep v ex vinyl tote bag chillwave swag occaecat. Sed banh mi 3 wolf moon single-origin coffee quis tempor. Hoodie pitchfork pork belly aliqua, shabby chic elit consequat freegan ethical try-hard mixtape. Schlitz banjo deep v ullamco blog, umami nulla sint elit skateboard Godard odio.
+        Why is this the most important part?
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="debug__content" v-show="infoCard === 'redirectUri'"> 
+  <div class="card wider">
+    <div class="card-header">
+      <h5>
+        <i class="fa fa-flash" aria-hidden="true"></i>
+        <strong>Redirect URI</strong>
+      </h5>
+    </div>
+    <div class="card-body text-center">
+      <p class="card-text">
+        How do I get back?
       </p>
     </div>
   </div>
