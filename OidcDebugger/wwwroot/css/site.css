@@ -88,3 +88,20 @@
   color: #747373;
   margin-bottom: 1rem;
 }
+
+.debug__callback {
+  padding: 2em 0;
+  max-width: 60%;
+}
+
+.debug__callback-info {
+  padding: 2em 0;
+}
+
+.code-block {
+  background-color: #222228;
+  font-family: monospace;
+  padding: 27px;
+  max-width: 70%;
+  margin: auto;
+}

@@ -25,43 +25,78 @@
     }
 </script>
 
-<div>
-    <div><b>Method:</b> <span id="method"></span></div>
+<div class="container debug__callback"> 
 
-    <div id="refererSection" class="hidden">
-        <b>Referer:</b> <span id="referer"></span>
+    <div class="debug__callback-header">
+        <h1 class="green-text">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            <b>Success!</b>
+        </h1>
+        <h2 class="h4-responsive">Lorem Ipsum Bacon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia</h2>
     </div>
-    
-    <div id="codeSection" class="hidden">
-        <b>Code:</b> <span id="code"></span>
+
+    <div class="debug__callback-info">
+        <h3 class="h5-responsive orange-text"><b>Exchange Code from Token</b></h3>
+        <p>Now, we need to turn that access code into an access token, by having our server make a request to your token endpoint</p>
+        <div class="card card-body code-block">
+            <p class="card-text white-text">
+                Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. No option maluisset sit. Ei quo timeam maluisset definitionem, prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
+            </p>
+        </div>
     </div>
 
-    <div id="stateSection" class="hidden">
-        <b>State:</b> <span id="state"></span>
+    <div class="debug__callback-info">
+        <h3 class="h5-responsive orange-text"><b>Verify User Token</b></h3>
+        <p>Now, we need to verify that the ID Token sent was from the correct place by validating the JWT's signature</p>
+        <div class="card card-body code-block">
+            <p class="card-text white-text">
+                Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. No option maluisset sit. Ei quo timeam maluisset definitionem, prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
+            </p>
+        </div>
     </div>
-</div>
 
-<div id="errorSection" class="hidden">
-    <div><b>Error:</b> <span id="error"></span></div>
-    <div><b>Description:</b> <span id="errorDescription"></span></div>
-</div>
+    <button type="button" class="btn btn-amber">
+        Click Me 
+    </button>
 
-<div id="rawQuerySection" class="hidden">
-    <p>Raw query values:</p>
+    <div class="jumbotron">
+        <div><b>Method:</b> <span id="method"></span></div>
 
-    <div id="rawQueryParent"></div>
-</div>
+        <div id="refererSection" class="hidden">
+            <b>Referer:</b> <span id="referer"></span>
+        </div>
+        
+        <div id="codeSection" class="hidden">
+            <b>Code:</b> <span id="code"></span>
+        </div>
 
-<div id="rawFragmentSection" class="hidden">
-    <p>Raw fragment values:</p>
+        <div id="stateSection" class="hidden">
+            <b>State:</b> <span id="state"></span>
+        </div>
 
-    <div id="rawFragmentParent"></div>
-</div>
+        <div id="errorSection" class="hidden">
+            <div><b>Error:</b> <span id="error"></span></div>
+            <div><b>Description:</b> <span id="errorDescription"></span></div>
+        </div>
 
-<div id="rawFormSection" class="hidden">
-    <p>Raw form body values:</p>
+        <div id="rawQuerySection" class="hidden">
+            <p>Raw query values:</p>
 
-    <div id="rawFormParent"></div>
+            <div id="rawQueryParent"></div>
+        </div>
+
+        <div id="rawFragmentSection" class="hidden">
+            <p>Raw fragment values:</p>
+
+            <div id="rawFragmentParent"></div>
+        </div>
+
+        <div id="rawFormSection" class="hidden">
+            <p>Raw form body values:</p>
+
+            <div id="rawFormParent"></div>
+        </div>
+    </div>
 </div>
 
 <environment names="Development">
