@@ -1,22 +1,90 @@
-﻿body {
+﻿.debug__header {
+  background: 
+    linear-gradient(
+      rgba(1, 87, 155, 0.95), 
+      rgba(1, 87, 155, 0.75)
+    ),
+    url("../images/computer-setup.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 25%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  position: relative;
 }
 
-label {
-    font-weight: bold;
+.debug__header-content {
+  max-width: 65%;
+  text-align: center;
+  padding: 1em;
 }
 
-input[type=text] {
-    width: 300px;
+.debug__author {
+  position: fixed;
+  top: 0;
+  right: 10px;
 }
 
-input:invalid {
-    border: 2px dashed red;
+.debug__author a {
+  color: white;
 }
 
-input:valid {
-    border: 2px solid black;
+.debug__author a:hover {
+  color: #ffd86f;
 }
 
-.hidden {
-    display: none;
+.debug__body {
+  padding: 3em 0;
+}
+
+.debug__form--output {
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.debug__footer {
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+}
+
+.debug__footer span {
+  padding: 1em;
+}
+
+.view {
+  overflow: hidden;
+  position: relative;
+  cursor: default;
+}
+
+.wider {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-header {
+  padding: 1.5em 1.5em 1em;
+  width: 105%;
+  color: white;
+  background: linear-gradient(10deg, #fc6262, #ffd86f);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.card-body {
+  padding: 1.8rem 0;
+  margin: 0 1em;
+}
+
+.card-text {
+  font-size: .9rem;
+  color: #747373;
+  margin-bottom: 1rem;
 }
