@@ -102,6 +102,12 @@
   background-color: #222228;
   font-family: monospace;
   padding: 27px;
+}
+
+.code-block--small {
+  background-color: #222228;
+  font-family: monospace;
+  padding: 27px;
   max-width: 70%;
   margin: auto;
 }
