@@ -29,31 +29,66 @@
   </div>
 
   <div class="md-form">
-    <label for="responseType">
-      Response type
-    </label>
-    <input type="text" id="responseType" class="form-control" v-model="responseType" v-on:focus="showInfo" required />
-  </div>
-
-  <div class="md-form">
-    <label for="responseMode">
-      Response mode
-    </label>
-    <input type="text" id="responseMode" class="form-control" v-model="responseMode" v-on:focus="showInfo" required />
-  </div>
-
-  <div class="md-form">
     <label for="state">
       State
     </label>
     <input type="text" id="state" class="form-control" v-model="state" v-on:focus="showInfo" />
   </div>
 
+  <div class="md-form">
+    <label for="nonce">
+      Nonce
+    </label>
+    <input type="text" id="nonce" class="form-control" v-model="nonce" v-on:focus="showInfo" />
+  </div>
+
+  <div class="md-form">
+    <label for="responseType">
+      Response type
+    </label>
+    <input type="checkbox" id="responseType-code" value="code" v-model="responseTypesArray" v-on:focus="showInfo" required>
+    <label for="responseType-code">code</label>
+    <input type="checkbox" id="responseType-token" value="token" v-model="responseTypesArray" v-on:focus="showInfo" required>
+    <label for="responseType-token">token</label>
+    <input type="checkbox" id="responseType-id_token" value="id_token" v-model="responseTypesArray" v-on:focus="showInfo" required>
+    <label for="responseType-code">id_token</label>
+  </div>
+
+  <div class="md-form">
+    <label for="responseMode">
+      Response mode
+    </label>
+    <input type="radio" id="responseMode-query" class="form-control" value="query" v-model="responseMode" v-on:focus="showInfo" />
+    <label for="responseMode-query">query</label>
+    <input type="radio" id="responseMode-formPost" class="form-control" value="form_post" v-model="responseMode" v-on:focus="showInfo" />
+    <label for="responseMode-formPost">form_post</label>
+    <input type="radio" id="responseMode-fragment" class="form-control" value="fragment" v-model="responseMode" v-on:focus="showInfo" />
+    <label for="responseMode-fragment">fragment</label>
+  </div>
+
+  <div class="md-form" v-show="flow === 'code'">
+    <b>Authorization Code flow</b><br/>
+    A responseType of code is the Authorization Code flow.<br/>
+    Some more info.<br/>
+  </div>
+  
+  <div class="md-form" v-show="flow === 'implicit'">
+    <b>Implicit flow</b><br/>
+    A responseType of token or id_token is the Implicit flow.<br/>
+    Some more info.<br/>
+  </div>
+
+  <div class="md-form" v-show="flow === 'hybrid'">
+    <b>Hybrid flow</b><br/>
+    A responseType of code+id_token is the Hybrid flow.<br/>
+    Some more info.<br/>
+  </div>
+
   <div>
     <label for="generatedUri">
       Request URI:
     </label>
-    <p id="generatedUri" class="debug__form--output deep-orange-text">{{ generatedUri }}</p>
+    <p id="generatedUri" class="debug__form--output deep-orange-text" v-html="generatedUri"></p>
   </div>
 
   <button id="send" class="btn btn-amber">
