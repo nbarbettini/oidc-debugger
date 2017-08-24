@@ -1,0 +1,72 @@
+﻿@model OidcDebugger.ViewModels.DebugViewModel
+
+@{
+    ViewData["Title"] = "Debug";
+}
+
+<script language="javascript">
+    window.debugInfo = {
+        method: "@Model.Method",
+        referer: "@Model.Referer",
+        code: "@Model.Code",
+        state: "@Model.State",
+        error: "@Model.Error",
+        errorDescription: "@Model.ErrorDescription",
+        formBody: [
+            @for (var i = 0; i < Model.Form.Count(); i++)
+            {
+                <text>{ name: '@Model.Form.ElementAt(i).Key', value: '@Model.Form.ElementAt(i).Value' }</text>
+                if (i < Model.Form.Count() - 1)
+                {
+                    <text>,</text>
+                }
+            }
+        ]
+    }
+</script>
+
+<div>
+    <div><b>Method:</b> <span id="method"></span></div>
+
+    <div id="refererSection" class="hidden">
+        <b>Referer:</b> <span id="referer"></span>
+    </div>
+    
+    <div id="codeSection" class="hidden">
+        <b>Code:</b> <span id="code"></span>
+    </div>
+
+    <div id="stateSection" class="hidden">
+        <b>State:</b> <span id="state"></span>
+    </div>
+</div>
+
+<div id="errorSection" class="hidden">
+    <div><b>Error:</b> <span id="error"></span></div>
+    <div><b>Description:</b> <span id="errorDescription"></span></div>
+</div>
+
+<div id="rawQuerySection" class="hidden">
+    <p>Raw query values:</p>
+
+    <div id="rawQueryParent"></div>
+</div>
+
+<div id="rawFragmentSection" class="hidden">
+    <p>Raw fragment values:</p>
+
+    <div id="rawFragmentParent"></div>
+</div>
+
+<div id="rawFormSection" class="hidden">
+    <p>Raw form body values:</p>
+
+    <div id="rawFormParent"></div>
+</div>
+
+<environment names="Development">
+    <script src="~/js/debug.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/debug.min.js" asp-append-version="true"></script>
+</environment>

@@ -6,7 +6,7 @@ using OidcDebugger.ViewModels;
 
 namespace OidcDebugger.Controllers
 {
-    public class DebugController : Controller
+    public class CallbackController : Controller
     {
         [HttpGet("~/debug"), HttpPost("~/debug")]
         public IActionResult Index()
