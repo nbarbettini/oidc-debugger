@@ -45,8 +45,11 @@
     </div>
 
     <div class="debug__callback-info">
-        <h3 class="h5-responsive orange-text"><b>Exchange Code from Token</b></h3>
-        <p>Now, we need to turn that access code into an access token, by having our server make a request to your token endpoint</p>
+        <h3 class="h5-responsive orange-text"><b>Exchange code for tokens</b></h3>
+        <p>
+            Now you need to exchange the code for tokens using the <span class="inline-code">/tokens</span> endpoint.
+            We can't do this step for you because it involves your Client Secret.
+        </p>
         <div class="card card-body code-block--small">
             <p class="card-text white-text">
                 Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. <span class="light-blue-text">No option maluisset sit.</span> Ei quo timeam maluisset definitionem, prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
@@ -55,8 +58,11 @@
     </div>
 
     <div class="debug__callback-info">
-        <h3 class="h5-responsive orange-text"><b>Verify User Token</b></h3>
-        <p>Now, we need to verify that the ID Token sent was from the correct place by validating the JWT's signature</p>
+        <h3 class="h5-responsive orange-text"><b>Verify tokens</b></h3>
+        <p>
+            The returned tokens need to be verified to make sure they aren't forged.
+            The <span class="inline-code">/introspect</span> endpoint can do this.
+        </p>
         <div class="card card-body code-block--small">
             <p class="card-text white-text">
                 Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. No option maluisset sit. Ei quo timeam maluisset definitionem, <span class="light-blue-text">No option maluisset sit.</span> prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
@@ -65,7 +71,7 @@
     </div>
 
     <button type="button" class="btn btn-amber">
-        Click Me 
+        Show the raw request details
     </button>
 
     <div class="jumbotron">
