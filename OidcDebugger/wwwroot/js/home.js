@@ -21,24 +21,28 @@
             if (!hasCode && (hasToken || hasIdToken)) return 'implicit';
             if (hasCode && (hasToken || hasIdToken)) return 'hybrid';
         },
-        generatedUri: function() {
+        generatedUriObject: function() {
             var authorizeUri = removeTrailingSlash(this.authorizeUri) || '';
             
             if (!authorizeUri.length) {
-                return '';
+                return {};
             }
-        
-            uri = '<span>' + authorizeUri + '?</span>';
-            uri += '<span>client_id=<span>' + encodeURIComponent(this.clientId.trim()) + '</span><br/></span>';
-            uri += '<span>&redirect_uri=<span>' + encodeURIComponent(this.redirectUri.trim()) + '</span><br/></span>';
-            uri += '<span>&scope=<span>' + encodeURIComponent(this.scopes.trim()) + '</span><br/></span>';
-            uri += '<span>&response_type=<span>' + encodeURIComponent(this.responseType) + '</span><br/></span>';
-            uri += '<span>&response_mode=<span>' + encodeURIComponent(this.responseMode) + '</span><br/></span>';
-        
-            if (this.state.length) uri += '&state=<span>' + encodeURIComponent(this.state) + '</span><br/></span>';
-            if (this.nonce.length) uri += '&nonce=<span>' + encodeURIComponent(this.nonce) + '</span><br/></span>';
 
-            return uri;
+            var result = {
+                authorizeUri,
+                params: []
+            };
+
+            result.params.push({ name: 'client_id', value: this.clientId.trim() });
+            result.params.push({ name: 'redirect_uri', value: this.redirectUri.trim() });
+            result.params.push({ name: 'scope', value: this.scopes.trim() });
+            result.params.push({ name: 'response_type', value: this.responseType.trim() });
+            result.params.push({ name: 'response_mode', value: this.responseMode.trim() });
+
+            if (this.state.length) result.params.push({ name: 'state', value: this.state });
+            if (this.nonce.length) result.params.push({ name: 'nonce', value: this.nonce });
+
+            return result;
         },
         responseType: function() {
             return this.responseTypesArray.join(' ');

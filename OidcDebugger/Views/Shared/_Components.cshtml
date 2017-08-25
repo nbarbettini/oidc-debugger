@@ -1,0 +1,41 @@
+<script type="text/x-template" id="request-uri-code-template">
+  <div>
+    <p id="generatedUri" class="debug__form--output deep-orange-text">
+      <template v-if="hasAuthorizeUri">
+        <span class="light-blue-text">{{uriObject.authorizeUri}}</span><br/>
+        <template v-for="(param, index) in uriObject.params">
+          {{index === 0 ? '?' : '&amp;'}}{{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+        </template>
+      </template>
+    </p>
+
+    <a v-bind:href="encodedUri" class="btn btn-amber">
+      Send Request
+      <i class="fa fa-paper-plane-o ml-1"></i>
+    </a>
+  </div>
+</script>
+
+<script>
+Vue.component('requestUriCode', {
+    props: ['uriObject'],
+    template: '#request-uri-code-template',
+    computed: {
+        encodedUri: function() {
+            if (!this.hasAuthorizeUri) return '';
+
+            var uri = this.uriObject.authorizeUri + '?';
+
+            for (var i = 0; i < this.uriObject.params.length; i++) {
+                uri += this.uriObject.params[i].name + '=' + encodeURIComponent(this.uriObject.params[i].value);
+                if (i < this.uriObject.params.length - 1) uri += '&';
+            }
+
+            return uri;
+        },
+        hasAuthorizeUri: function() {
+            return this.uriObject && this.uriObject.authorizeUri;
+        }
+    }
+});
+</script>

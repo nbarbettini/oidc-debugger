@@ -1,4 +1,3 @@
-
 <form id="oidcForm" class="debug__form">
   <div class="md-form">
     <label for="authorizeUri">
@@ -84,15 +83,5 @@
     Some more info.<br/>
   </div>
 
-  <div>
-    <label for="generatedUri">
-      Request URI:
-    </label>
-    <p id="generatedUri" class="debug__form--output deep-orange-text" v-html="generatedUri"></p>
-  </div>
-
-  <button id="send" class="btn btn-amber">
-    Send Request
-    <i class="fa fa-paper-plane-o ml-1"></i>
-  </button>
+  <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
 </form>
