@@ -25,43 +25,93 @@
     }
 </script>
 
-<div>
-    <div><b>Method:</b> <span id="method"></span></div>
+<div class="container debug__callback"> 
 
-    <div id="refererSection" class="hidden">
-        <b>Referer:</b> <span id="referer"></span>
+    <div class="debug__callback-header">
+        <h1 class="green-text">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <b>Success!</b>
+        </h1>
+        <h2 class="h4-responsive">
+            Lorem Ipsum Bacon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia
+        </h2>
+        <h1 class="red-text">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <b>Error</b>
+        </h1>
+        <h2 class="h4-responsive">
+            Lorem Ipsum Bacon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia
+        </h2>
     </div>
-    
-    <div id="codeSection" class="hidden">
-        <b>Code:</b> <span id="code"></span>
+
+    <div class="debug__callback-info">
+        <h3 class="h5-responsive orange-text"><b>Exchange code for tokens</b></h3>
+        <p>
+            Now you need to exchange the code for tokens using the <span class="inline-code">/tokens</span> endpoint.
+            We can't do this step for you because it involves your Client Secret.
+        </p>
+        <div class="card card-body code-block--small">
+            <p class="card-text white-text">
+                Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. <span class="light-blue-text">No option maluisset sit.</span> Ei quo timeam maluisset definitionem, prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
+            </p>
+        </div>
     </div>
 
-    <div id="stateSection" class="hidden">
-        <b>State:</b> <span id="state"></span>
+    <div class="debug__callback-info">
+        <h3 class="h5-responsive orange-text"><b>Verify tokens</b></h3>
+        <p>
+            The returned tokens need to be verified to make sure they aren't forged.
+            The <span class="inline-code">/introspect</span> endpoint can do this.
+        </p>
+        <div class="card card-body code-block--small">
+            <p class="card-text white-text">
+                Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. No option maluisset sit. Ei quo timeam maluisset definitionem, <span class="light-blue-text">No option maluisset sit.</span> prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
+            </p>
+        </div>
     </div>
-</div>
 
-<div id="errorSection" class="hidden">
-    <div><b>Error:</b> <span id="error"></span></div>
-    <div><b>Description:</b> <span id="errorDescription"></span></div>
-</div>
+    <button type="button" class="btn btn-amber">
+        Show the raw request details
+    </button>
 
-<div id="rawQuerySection" class="hidden">
-    <p>Raw query values:</p>
+    <div class="jumbotron">
+        <div><b>Method:</b> <span id="method"></span></div>
 
-    <div id="rawQueryParent"></div>
-</div>
+        <div id="refererSection" class="hidden">
+            <b>Referer:</b> <span id="referer"></span>
+        </div>
+        
+        <div id="codeSection" class="hidden">
+            <b>Code:</b> <span id="code"></span>
+        </div>
 
-<div id="rawFragmentSection" class="hidden">
-    <p>Raw fragment values:</p>
+        <div id="stateSection" class="hidden">
+            <b>State:</b> <span id="state"></span>
+        </div>
 
-    <div id="rawFragmentParent"></div>
-</div>
+        <div id="errorSection" class="hidden">
+            <div><b>Error:</b> <span id="error"></span></div>
+            <div><b>Description:</b> <span id="errorDescription"></span></div>
+        </div>
 
-<div id="rawFormSection" class="hidden">
-    <p>Raw form body values:</p>
+        <div id="rawQuerySection" class="hidden">
+            <p>Raw query values:</p>
 
-    <div id="rawFormParent"></div>
+            <div id="rawQueryParent"></div>
+        </div>
+
+        <div id="rawFragmentSection" class="hidden">
+            <p>Raw fragment values:</p>
+
+            <div id="rawFragmentParent"></div>
+        </div>
+
+        <div id="rawFormSection" class="hidden">
+            <p>Raw form body values:</p>
+
+            <div id="rawFormParent"></div>
+        </div>
+    </div>
 </div>
 
 <environment names="Development">

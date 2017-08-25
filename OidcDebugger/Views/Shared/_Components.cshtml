@@ -1,6 +1,6 @@
 <script type="text/x-template" id="request-uri-code-template">
-  <div>
-    <p id="generatedUri" class="debug__form--output deep-orange-text">
+  <div class="card card-body code-block">
+    <p id="generatedUri" class="card-text white-text debug__form--output">
       <template v-if="hasAuthorizeUri">
         <span class="light-blue-text">{{uriObject.authorizeUri}}</span><br/>
         <template v-for="(param, index) in uriObject.params">
