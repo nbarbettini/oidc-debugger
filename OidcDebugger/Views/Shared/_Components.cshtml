@@ -4,9 +4,11 @@
   <div class="card card-body code-block">
     <p id="generatedUri" class="card-text white-text debug__form--output">
       <template v-if="hasAuthorizeUri">
-        <span class="light-blue-text">{{uriObject.authorizeUri}}</span><br/>
+        <span class="code-line light-blue-text">{{uriObject.authorizeUri}}</span>
         <template v-for="(param, index) in uriObject.params">
-          {{index === 0 ? '?' : '&amp;'}}{{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+          <span class="code-line">
+            {{index === 0 ? '?' : '&amp;'}}{{param.name}}=<span class="light-blue-text">{{param.value}}</span>
+          </span>
         </template>
       </template>
     </p>

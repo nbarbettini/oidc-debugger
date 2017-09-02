@@ -131,3 +131,11 @@
   max-width: 70%;
   margin: auto;
 }
+
+.code-line {
+  display: block;
+}
+
+.code-block .code-line:nth-child(n+2) {
+  margin-left: 20px;
+}
