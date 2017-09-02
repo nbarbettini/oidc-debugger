@@ -61,6 +61,26 @@
   cursor: default;
 }
 
+.form-group {
+  display: block;
+}
+
+.md-form .form-group-label {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.md-form .select-label {
+  position: relative;
+  padding-left: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  font-size: 1rem;
+  top: 0;
+}
+
 .wider {
   background-color: transparent;
   display: flex;
