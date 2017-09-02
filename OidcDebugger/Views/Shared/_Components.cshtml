@@ -1,3 +1,5 @@
+<!-- requestUriCode -->
+
 <script type="text/x-template" id="request-uri-code-template">
   <div class="card card-body code-block">
     <p id="generatedUri" class="card-text white-text debug__form--output">
@@ -38,4 +40,31 @@ Vue.component('requestUriCode', {
         }
     }
 });
+</script>
+
+<!-- infoCard -->
+
+<script type="text/x-template" id="info-card-template">
+  <div class="debug__content"> 
+    <div class="card wider">
+      <div class="card-header">
+        <h5>
+          <i class="fa fa-question" aria-hidden="true"></i>
+          <strong>{{title}}</strong>
+        </h5>
+      </div>
+      <div class="card-body text-center">
+        <p class="card-text">
+          <slot></slot>
+        </p>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+  Vue.component('infoCard', {
+    props: ['title', 'text'],
+    template: '#info-card-template'
+  });
 </script>

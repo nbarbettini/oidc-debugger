@@ -1,31 +1,27 @@
-<div class="debug__content" v-show="infoCard === 'authorizeUri'"> 
-  <div class="card wider">
-    <div class="card-header">
-      <h5>
-        <i class="fa fa-flash" aria-hidden="true"></i>
-        <strong>Authorize URI</strong>
-      </h5>
-    </div>
-    <div class="card-body text-center">
-      <p class="card-text">
-        Why is this the most important part?
-      </p>
-    </div>
-  </div>
-</div>
+<info-card v-show="selected === 'authorizeUri'" title="Authorize URI">
+  <p>The <b>authorize URI</b> on the authorization server is where an OpenID Connect flow starts.</p>
+</info-card>
 
-<div class="debug__content" v-show="infoCard === 'redirectUri'"> 
-  <div class="card wider">
-    <div class="card-header">
-      <h5>
-        <i class="fa fa-flash" aria-hidden="true"></i>
-        <strong>Redirect URI</strong>
-      </h5>
-    </div>
-    <div class="card-body text-center">
-      <p class="card-text">
-        How do I get back?
-      </p>
-    </div>
-  </div>
-</div>
+<info-card v-show="selected === 'redirectUri'" title="Redirect URI">
+  <p>The <b>redirect URI</b> tells the issuer where to redirect the browser back to when the flow is done.</p>
+</info-card>
+
+<info-card v-show="selected === 'clientId'" title="Client ID">
+  <p>Every client (website or mobile app) is identified by a <b>client ID</b>.
+  Unlike a client secret, the client ID is a public value that does not have to be protected.</p>
+</info-card>
+
+<info-card v-show="selected === 'scopes'" title="Scope">
+  <p>Clients can request additional information or permissions via <b>scopes</b>. The <code>openid</code> scope is the only required scope.</p>
+  <p>The OpenID Connect spec <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">defines some scopes</a>,
+  and applications can define their own custom scopes as well.</p>
+</info-card>
+
+<info-card v-show="selected === 'state'" title="State">
+  <p>The <b>state</b> is an optional value that is carried through the whole flow and returned to the client.</p>
+  <p>It's common to use state to store an anti-forgery token that can be verified after the login flow is complete. Another common use is storing the location the user should be redirected to after logging in.</p>
+</info-card>
+
+<info-card v-show="selected === 'nonce'" title="Nonce">
+  <p>A <b>nonce</b> (or <b>n</b>umber used <b>once></b>) is a random value that is used to prevent <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a>. </p>
+</info-card>

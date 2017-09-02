@@ -9,7 +9,7 @@
         responseMode: 'form_post',
         state: '',
         nonce: randomness(),
-        infoCard: ''
+        selected: ''
     },
     computed: {
         flow: function() {
@@ -50,7 +50,7 @@
     },
     methods: {
         showInfo: function(event) {
-            this.infoCard = event.target.id;
+            this.selected = event.target.id;
         }
     }
 });
