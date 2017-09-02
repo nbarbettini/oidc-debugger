@@ -30,7 +30,8 @@
 
             var result = {
                 authorizeUri,
-                params: []
+                params: [],
+                valid: false
             };
 
             result.params.push({ name: 'client_id', value: this.clientId.trim() });
@@ -41,6 +42,13 @@
 
             if (this.state.length) result.params.push({ name: 'state', value: this.state });
             if (this.nonce.length) result.params.push({ name: 'nonce', value: this.nonce });
+
+            // Quick 'n dirty form validation
+            result.valid = this.clientId.trim().length
+                        && this.redirectUri.trim().length
+                        && this.scopes.trim().length
+                        && this.responseType.trim().length
+                        && this.responseMode.trim().length;
 
             return result;
         },

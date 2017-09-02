@@ -13,7 +13,7 @@
       </template>
     </p>
 
-    <a v-bind:href="encodedUri" class="btn btn-amber">
+    <a v-bind:href="encodedUri" class="btn btn-amber" v-bind:class="{ disabled: !uriObject.valid }">
       Send Request
       <i class="fa fa-paper-plane-o ml-1"></i>
     </a>
