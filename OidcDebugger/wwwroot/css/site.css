@@ -63,6 +63,11 @@
 
 .form-group {
   display: block;
+  padding-right: 3em;
+}
+
+.form-group-inline {
+  display: flex;
 }
 
 .md-form .form-group-label {
@@ -72,7 +77,7 @@
 
 .md-form .select-label {
   position: relative;
-  padding-left: 1rem;
+  padding-left: 0.5em;
   cursor: pointer;
   display: inline-block;
   height: 25px;

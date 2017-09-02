@@ -45,17 +45,19 @@
     <label for="responseType" class="form-group-label">
         Response type <span class="required-text">(required)</span>
     </label>
-    <div class="form-group">
-        <input type="checkbox" id="responseType-code" value="code" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-code" class="select-label">code</label>
-    </div>
-    <div class="form-group">
-        <input type="checkbox" id="responseType-token" value="token" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-token" class="select-label">token</label>
-    </div>
-    <div class="form-group">
-        <input type="checkbox" id="responseType-id_token" value="id_token" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-id_token" class="select-label">id_token</label>
+    <div class="form-group-inline">
+        <div class="form-group">
+            <input type="checkbox" id="responseType-code" value="code" v-model="responseTypesArray" v-on:focus="showInfo" required>
+            <label for="responseType-code" class="select-label">code</label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="responseType-token" value="token" v-model="responseTypesArray" v-on:focus="showInfo" required>
+            <label for="responseType-token" class="select-label">token</label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="responseType-id_token" value="id_token" v-model="responseTypesArray" v-on:focus="showInfo" required>
+            <label for="responseType-id_token" class="select-label">id_token</label>
+        </div>
     </div>
   </div>
 
@@ -78,17 +80,19 @@
     <label for="responseMode" class="form-group-label">
         Response mode <span class="required-text">(required)</span>
     </label>
-    <div class="form-group">
-        <input type="radio" id="responseMode-query" value="query" v-model="responseMode" v-on:focus="showInfo" />
-        <label for="responseMode-query" class="select-label">query</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="responseMode-formPost" value="form_post" v-model="responseMode" v-on:focus="showInfo" />
-        <label for="responseMode-formPost" class="select-label">form_post</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="responseMode-fragment" value="fragment" v-model="responseMode" v-on:focus="showInfo" />
-        <label for="responseMode-fragment" class="select-label">fragment</label>
+    <div class="form-group-inline">
+        <div class="form-group">
+            <input type="radio" id="responseMode-query" value="query" v-model="responseMode" v-on:focus="showInfo" />
+            <label for="responseMode-query" class="select-label">query</label>
+        </div>
+        <div class="form-group">
+            <input type="radio" id="responseMode-formPost" value="form_post" v-model="responseMode" v-on:focus="showInfo" />
+            <label for="responseMode-formPost" class="select-label">form_post</label>
+        </div>
+        <div class="form-group">
+            <input type="radio" id="responseMode-fragment" value="fragment" v-model="responseMode" v-on:focus="showInfo" />
+            <label for="responseMode-fragment" class="select-label">fragment</label>
+        </div>
     </div>
   </div>
 
