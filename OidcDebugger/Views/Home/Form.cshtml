@@ -55,9 +55,24 @@
     </div>
     <div class="form-group">
         <input type="checkbox" id="responseType-id_token" value="id_token" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-code" class="select-label">id_token</label>
+        <label for="responseType-id_token" class="select-label">id_token</label>
     </div>
   </div>
+
+  <info-card v-show="flow === 'code'" title="Authorization Code flow">
+    <p>The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.</p>
+    <p>This flow should be used when the application runs on a server, and is not recommended for JavaScript single-page applications.</p>
+  </info-card>
+
+  <info-card v-show="flow === 'implicit'" title="Implicit flow">
+    <p>The authorization server will return an access and/or ID token directly back to the client.</p>
+    <p>This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications.</p>
+  </info-card>
+
+  <info-card v-show="flow === 'hybrid'" title="Hybrid flow">
+    <p>The authorization server will respond with both a <code>code</code> (which the client can exchange for tokens on a secure channel) and a token.</p>
+    <p>A common use case for the hybrid flow is using the <code>code</code> to get an access token on the server, and directly consuming an ID token on the client.</p>
+  </info-card>
 
   <div class="md-form">
     <label for="responseMode" class="form-group-label">
@@ -75,24 +90,6 @@
         <input type="radio" id="responseMode-fragment" value="fragment" v-model="responseMode" v-on:focus="showInfo" />
         <label for="responseMode-fragment" class="select-label">fragment</label>
     </div>
-  </div>
-
-  <div class="md-form" v-show="flow === 'code'">
-    <b>Authorization Code flow</b><br/>
-    A responseType of code is the Authorization Code flow.<br/>
-    Some more info.<br/>
-  </div>
-  
-  <div class="md-form" v-show="flow === 'implicit'">
-    <b>Implicit flow</b><br/>
-    A responseType of token or id_token is the Implicit flow.<br/>
-    Some more info.<br/>
-  </div>
-
-  <div class="md-form" v-show="flow === 'hybrid'">
-    <b>Hybrid flow</b><br/>
-    A responseType of code+id_token is the Hybrid flow.<br/>
-    Some more info.<br/>
   </div>
 
   <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
