@@ -84,7 +84,7 @@
     <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
 
     <div class="debug__form-submit">
-        <a v-bind:href="encodedUri" v-bind:class="{ disabled: !uriObject.valid }" 
+        <a v-bind:href="encodedUri" v-bind:class="{ disabled: !generatedUriObject.valid }" 
            class="btn btn-amber debug__form-submit--button">
             Send Request
             <i class="fa fa-paper-plane-o ml-1"></i>
