@@ -1,5 +1,4 @@
-﻿// Configure bundling and minification for the project.
-// More info at https://go.microsoft.com/fwlink/?LinkId=808241
+﻿// See https://go.microsoft.com/fwlink/?LinkId=808241
 [
   {
     "outputFileName": "wwwroot/css/site.min.css",
@@ -8,10 +7,43 @@
       "wwwroot/css/site.css"
     ]
   },
+  
+  // Base site JS
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/js/site.js",
+      "wwwroot/js/util.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+
+  // Home view JS
+  {
+    "outputFileName": "wwwroot/js/home.min.js",
+    "inputFiles": [
+      "wwwroot/js/home.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+
+  // Debug (callback) view JS
+  {
+    "outputFileName": "wwwroot/js/debug.min.js",
+    "inputFiles": [
+      "wwwroot/js/debug.js"
     ],
     // Optionally specify minification options
     "minify": {

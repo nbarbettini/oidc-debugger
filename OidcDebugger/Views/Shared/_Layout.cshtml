@@ -4,33 +4,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - OidcDebugger</title>
+    <title>@ViewData["Title"]</title>
 
-    <environment names="Development">
-      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" integrity="sha256-HSciL+lazQcMW++cz2zjsrvhGmQk1mh2nzXl/kqTSjY=" crossorigin="anonymous" />
+
+    <environment names="Development">     
       <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" />
       <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <environment names="Development">
+      <script src="https://unpkg.com/vue@2.4.2/dist/vue.js"></script>
       <script src="~/js/site.js"></script>
       <script src="~/js/util.js"></script>
     </environment>
     <environment names="Staging,Production">
+      <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
       <script src="~/js/site.min.js" asp-append-version="true"></script>
-      <script src="~/js/util.min.js" asp-append-version="true"></script>
     </environment>
-
-    <!-- TODO: replace with bundled script -->
-    <script src="https://unpkg.com/vue"></script>
   </head>
 
   <body>
@@ -38,7 +33,7 @@
     <header class="debug__header debug__header-overlay">
       <div class="debug__header-content">
         <h1>
-          Open ID Connect <strong>< Debugger /></strong>
+          Open ID Connect <strong>&lt; Debugger /&gt;</strong>
         </h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -46,7 +41,7 @@
         </p>
         <span class="debug__author">
           <small>
-            <a href="https://github.com/nbarbettini">
+            <a href="https://www.recaffeinate.co">
               <i class="fa fa-code"></i>
               Crafted by Nate Barbettini
             </a>
@@ -62,21 +57,18 @@
       @RenderBody()
 
       <footer class="debug__footer">
-        <span>&copy; 2017 - OidcDebugger</span>
+        <span>&copy; 2017 - <a href="https://www.recaffeinate.co">Nate Barbettini</a></span>
       </footer>
 
     </div>    
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- Bootstrap tooltips -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <!-- MDB core JavaScript -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" integrity="sha256-2Buypeb0Pu614AJISY6JXTri4OLjsLyC69rI3ErnEKw=" crossorigin="anonymous"></script>
   </body>
 
 </html>
