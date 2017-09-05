@@ -1,96 +1,93 @@
 <form class="debug__form">
-  <div class="md-form">
-    <label for="authorizeUri">
-      Authorize URI <span class="required-text">(required)</span>
-    </label>
-    <input type="text" id="authorizeUri" class="form-control" v-model="authorizeUri" v-on:focus="showInfo" required />
-  </div>
-
-  <div class="md-form">
-    <label for="redirectUri">
-        Redirect URI <span class="required-text">(required)</span>
-    </label>
-    <input type="text" id="redirectUri" class="form-control" v-model="redirectUri" v-on:focus="showInfo" required />
-  </div>
-
-  <div class="md-form">
-    <label for="clientId">
-        Client ID <span class="required-text">(required)</span>
-    </label>
-    <input type="text" id="clientId" class="form-control" v-model="clientId" v-on:focus="showInfo" required/>
-  </div>
-
-  <div class="md-form">
-    <label for="scopes">
-      Scope <span class="required-text">(required)</span>
-    </label>
-    <input type="text" id="scopes" class="form-control" v-model="scopes" v-on:focus="showInfo" required />
-  </div>
-
-  <div class="md-form">
-    <label for="state">
-      State
-    </label>
-    <input type="text" id="state" class="form-control" v-model="state" v-on:focus="showInfo" />
-  </div>
-
-  <div class="md-form">
-    <label for="nonce">
-      Nonce
-    </label>
-    <input type="text" id="nonce" class="form-control" v-model="nonce" v-on:focus="showInfo" />
-  </div>
-
-  <div class="md-form">
-    <label for="responseType" class="form-group-label">
-        Response type <span class="required-text">(required)</span>
-    </label>
-    <div class="form-group">
-        <input type="checkbox" id="responseType-code" value="code" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-code" class="select-label">code</label>
+    <div class="md-form">
+        <label for="authorizeUri">
+            Authorize URI <span class="required-text">(required)</span>
+        </label>
+        <input type="text" id="authorizeUri" class="form-control" v-model="authorizeUri" v-on:focus="showInfo" required />
     </div>
-    <div class="form-group">
-        <input type="checkbox" id="responseType-token" value="token" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-token" class="select-label">token</label>
-    </div>
-    <div class="form-group">
-        <input type="checkbox" id="responseType-id_token" value="id_token" v-model="responseTypesArray" v-on:focus="showInfo" required>
-        <label for="responseType-id_token" class="select-label">id_token</label>
-    </div>
-  </div>
 
-  <info-card v-show="flow === 'code'" title="Authorization Code flow">
-    <p>The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.</p>
-    <p>This flow should be used when the application runs on a server, and is not recommended for JavaScript single-page applications.</p>
-  </info-card>
-
-  <info-card v-show="flow === 'implicit'" title="Implicit flow">
-    <p>The authorization server will return an access and/or ID token directly back to the client.</p>
-    <p>This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications.</p>
-  </info-card>
-
-  <info-card v-show="flow === 'hybrid'" title="Hybrid flow">
-    <p>The authorization server will respond with both a <code>code</code> (which the client can exchange for tokens on a secure channel) and a token.</p>
-    <p>A common use case for the hybrid flow is using the <code>code</code> to get an access token on the server, and directly consuming an ID token on the client.</p>
-  </info-card>
-
-  <div class="md-form">
-    <label for="responseMode" class="form-group-label">
-        Response mode <span class="required-text">(required)</span>
-    </label>
-    <div class="form-group">
-        <input type="radio" id="responseMode-query" value="query" v-model="responseMode" v-on:focus="showInfo" />
-        <label for="responseMode-query" class="select-label">query</label>
+    <div class="md-form">
+        <label for="redirectUri">
+            Redirect URI <span class="required-text">(required)</span>
+        </label>
+        <input type="text" id="redirectUri" class="form-control" v-model="redirectUri" v-on:focus="showInfo" required />
     </div>
-    <div class="form-group">
-        <input type="radio" id="responseMode-formPost" value="form_post" v-model="responseMode" v-on:focus="showInfo" />
-        <label for="responseMode-formPost" class="select-label">form_post</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="responseMode-fragment" value="fragment" v-model="responseMode" v-on:focus="showInfo" />
-        <label for="responseMode-fragment" class="select-label">fragment</label>
-    </div>
-  </div>
 
-  <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
+    <div class="md-form">
+        <label for="clientId">
+            Client ID <span class="required-text">(required)</span>
+        </label>
+        <input type="text" id="clientId" class="form-control" v-model="clientId" v-on:focus="showInfo" required/>
+    </div>
+
+    <div class="md-form">
+        <label for="scopes">
+            Scope <span class="required-text">(required)</span>
+        </label>
+        <input type="text" id="scopes" class="form-control" v-model="scopes" v-on:focus="showInfo" required />
+    </div>
+
+    <div class="md-form">
+        <label for="state">
+            State
+        </label>
+        <input type="text" id="state" class="form-control" v-model="state" v-on:focus="showInfo" />
+    </div>
+
+    <div class="md-form">
+        <label for="nonce">
+            Nonce
+        </label>
+        <input type="text" id="nonce" class="form-control" v-model="nonce" v-on:focus="showInfo" />
+    </div>
+
+    <div class="md-form">
+        <label for="responseType" class="form-group-label">
+            Response type <span class="required-text">(required)</span>
+        </label>
+        <div class="form-group-inline">
+            <div class="form-group">
+                <input type="checkbox" id="responseType-code" value="code" v-model="responseTypesArray" v-on:focus="showInfo" required>
+                <label for="responseType-code" class="select-label">code</label>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="responseType-token" value="token" v-model="responseTypesArray" v-on:focus="showInfo" required>
+                <label for="responseType-token" class="select-label">token</label>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="responseType-id_token" value="id_token" v-model="responseTypesArray" v-on:focus="showInfo" required>
+                <label for="responseType-id_token" class="select-label">id_token</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-form">
+        <label for="responseMode" class="form-group-label">
+            Response mode <span class="required-text">(required)</span>
+        </label>
+        <div class="form-group-inline">
+            <div class="form-group">
+                <input type="radio" id="responseMode-query" value="query" v-model="responseMode" v-on:focus="showInfo" />
+                <label for="responseMode-query" class="select-label">query</label>
+            </div>
+            <div class="form-group">
+                <input type="radio" id="responseMode-formPost" value="form_post" v-model="responseMode" v-on:focus="showInfo" />
+                <label for="responseMode-formPost" class="select-label">form_post</label>
+            </div>
+            <div class="form-group">
+                <input type="radio" id="responseMode-fragment" value="fragment" v-model="responseMode" v-on:focus="showInfo" />
+                <label for="responseMode-fragment" class="select-label">fragment</label>
+            </div>
+        </div>
+    </div>
+
+    <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
+
+    <div class="debug__form-submit">
+        <a v-bind:href="encodedUri" v-bind:class="{ disabled: !uriObject.valid }" 
+           class="btn btn-amber debug__form-submit--button">
+            Send Request
+            <i class="fa fa-paper-plane-o ml-1"></i>
+        </a>
+    </div>
 </form>

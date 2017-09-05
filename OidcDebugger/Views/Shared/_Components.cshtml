@@ -12,11 +12,6 @@
         </template>
       </template>
     </p>
-
-    <a v-bind:href="encodedUri" class="btn btn-amber" v-bind:class="{ disabled: !uriObject.valid }">
-      Send Request
-      <i class="fa fa-paper-plane-o ml-1"></i>
-    </a>
   </div>
 </script>
 
@@ -51,7 +46,7 @@ Vue.component('requestUriCode', {
     <div class="card wider">
       <div class="card-header">
         <h5>
-          <i class="fa fa-question" aria-hidden="true"></i>
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
           <strong>{{title}}</strong>
         </h5>
       </div>
