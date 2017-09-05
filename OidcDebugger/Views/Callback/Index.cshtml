@@ -4,30 +4,11 @@
     ViewData["Title"] = "Debug";
 }
 
-<script language="javascript">
-    window.debugInfo = {
-        method: "@Model.Method",
-        referer: "@Model.Referer",
-        code: "@Model.Code",
-        state: "@Model.State",
-        error: "@Model.Error",
-        errorDescription: "@Model.ErrorDescription",
-        formBody: [
-            @for (var i = 0; i < Model.Form.Count(); i++)
-            {
-                <text>{ name: '@Model.Form.ElementAt(i).Key', value: '@Model.Form.ElementAt(i).Value' }</text>
-                if (i < Model.Form.Count() - 1)
-                {
-                    <text>,</text>
-                }
-            }
-        ]
-    }
-</script>
+@Html.Partial("_ServerInfo")
 
-<div class="container debug__callback"> 
+<div class="container debug__callback" id="debug-view-component"> 
 
-    <div class="debug__callback-header">
+    <div class="debug__callback-header" v-if="success">
         <h1 class="green-text">
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             <b>Success!</b>
@@ -35,6 +16,9 @@
         <h2 class="h4-responsive">
             Lorem Ipsum Bacon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia
         </h2>
+    </div>
+
+    <div class="debug__callback-header" v-if="!success">
         <h1 class="red-text">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <b>Error</b>
@@ -44,7 +28,7 @@
         </h2>
     </div>
 
-    <div class="debug__callback-info">
+    <div class="debug__callback-info" v-if="success">
         <h3 class="h5-responsive orange-text"><b>Exchange code for tokens</b></h3>
         <p>
             Now you need to exchange the code for tokens using the <span class="inline-code">/tokens</span> endpoint.
@@ -57,7 +41,7 @@
         </div>
     </div>
 
-    <div class="debug__callback-info">
+    <div class="debug__callback-info" v-if="success">
         <h3 class="h5-responsive orange-text"><b>Verify tokens</b></h3>
         <p>
             The returned tokens need to be verified to make sure they aren't forged.
@@ -75,29 +59,31 @@
     </button>
 
     <div class="jumbotron">
-        <div><b>Method:</b> <span id="method"></span></div>
-
-        <div id="refererSection" class="hidden">
-            <b>Referer:</b> <span id="referer"></span>
+        <div>
+            <b>Method:</b> {{method}}
         </div>
         
-        <div id="codeSection" class="hidden">
-            <b>Code:</b> <span id="code"></span>
+        <div v-show="code">
+            <b>Code:</b> {{code}}
         </div>
 
-        <div id="stateSection" class="hidden">
-            <b>State:</b> <span id="state"></span>
+        <div v-show="state">
+            <b>State:</b> {{state}}
         </div>
 
-        <div id="errorSection" class="hidden">
-            <div><b>Error:</b> <span id="error"></span></div>
-            <div><b>Description:</b> <span id="errorDescription"></span></div>
+        <div v-show="error">
+            <div><b>Error:</b> {{error}}</div>
+            <div><b>Description:</b> {{errorDescription}}</div>
         </div>
 
-        <div id="rawQuerySection" class="hidden">
+        <div>
             <p>Raw query values:</p>
 
-            <div id="rawQueryParent"></div>
+            <code>
+                <template v-for="param in query">
+                    {{param.name}}={{param.value}}
+                </template>
+            </code>
         </div>
 
         <div id="rawFragmentSection" class="hidden">

@@ -1,12 +1,55 @@
-﻿function readValues() {
-    window.debugInfo = window.debugInfo || {};
+﻿var debugViewComponent = new Vue({
+    el: "#debug-view-component",
+    data: {
+        query: parseValues(window.location.search),
+        fragment: parseValues(window.location.hash),
+        formBody: window.serverInfo.formBody
+    },
+    computed: {
+        code: function() { return findValue('code'); },
+        success: function() {
+            return true; // todo
+        }
+    },
+    methods: {
+        findValue: function(name) {
+            var result = {
+                exists: false,
+                value: '',
+                source: ''
+            };
+        
+            var foundInQuery = findValueInArray(this.query, name);
+            if (foundInQuery && foundInQuery.length) {
+                result.exists = true;
+                result.value = foundInQuery;
+                result.source = 'query';
+            }
+        
+            var foundInFragment = findValueInArray(this.fragment, name);
+            if (foundInFragment && foundInFragment.length) {
+                result.exists = true;
+                result.value = foundInFragment;
+                result.source = 'fragment';
+            }
+        
+            var foundInFormBody = findValueInArray(this.formBody, name);
+            if (foundInFormBody && foundInFormBody.length) {
+                result.exists = true;
+                result.value = foundInFormBody;
+                result.source = 'form';
+            }
+        
+            return result;
+        }
+    }
+});
 
-    window.debugInfo.query = parseValues(window.location.search);
-    window.debugInfo.fragment = parseValues(window.location.hash);
 
-    window.debugInfo.code = window.debugInfo.code
-        || findValueInArray(window.debugInfo.query, 'code')
-        || findValueInArray(window.debugInfo.fragment, 'code');
+
+function readValues() {
+
+    //window.debugInfo.code = 
 
     window.debugInfo.state = window.debugInfo.state
         || findValueInArray(window.debugInfo.query, 'state')
@@ -44,6 +87,8 @@ function findValueInArray(arr, name) {
 
     return null;
 }
+
+
 
 function update() {
     var methodSpan = document.getElementById('method');
@@ -140,8 +185,3 @@ function createParamTable(params) {
 
     return table;
 }
-
-ready(function () {
-    readValues();
-    update();
-});
