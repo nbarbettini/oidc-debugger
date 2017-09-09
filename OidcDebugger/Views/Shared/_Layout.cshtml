@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @(Tenant.Name == "oauth" ? "OAuth 2.0" : "OpenID Connect") Debugger</title>
+    <title>@ViewData["Title"] - @Tenant.Name Debugger</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -29,19 +29,19 @@
       <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     <script>
-      window.tenant = "@Tenant.Name";
+      window.tenant = '@Tenant.Shortname';
     </script>
   </head>
 
   <body>
 
-    <header class="debug__header @(Tenant.Name == "oauth" ? "header-oauth" : "header-oidc")">
+    <header class="debug__header @(Tenant.Shortname == "oauth" ? "header-oauth" : "header-oidc")">
       <div class="debug__header-content">
         <h1>
-          <strong>@(Tenant.Name == "oauth" ? "OAuth 2.0" : "OpenID Connect")</strong> &lt;Debugger/&gt;
+          <strong>@Tenant.Name</strong> &lt;Debugger/&gt;
         </h1>
         <p>
-          Test @(Tenant.Name == "oauth" ? "OAuth 2.0" : "OpenID Connect") requests and debug responses.
+          Test @Tenant.Name requests and debug responses.
         </p>
         <span class="debug__author">
           <small>
