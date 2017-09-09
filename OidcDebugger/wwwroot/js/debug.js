@@ -7,9 +7,24 @@
     },
     computed: {
         code: function() { return findValue('code'); },
+        state: function() { return findValue('state') || ''; },
+        error: function() { return findValue('error'); },
+        errorDescription: function() { return findValue('error_description'); },
         success: function() {
             return true; // todo
-        }
+        },
+        flow: function() {
+            return 'code'; // todo
+        },
+        tokenEndpoint: function() {
+            return '/tokens';
+        }, // todo
+        clientId: function() {
+            return "todo"; // todo
+        },
+        implicitResponseType: function() {
+            return "todo"; // todo
+        },
     },
     methods: {
         findValue: function(name) {

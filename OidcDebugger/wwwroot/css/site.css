@@ -78,6 +78,10 @@
   padding: 1em;
 }
 
+.debug__callback-header h2 {
+  margin-bottom: 20px;
+}
+
 .form-group {
   display: block;
   padding-right: 3em;
