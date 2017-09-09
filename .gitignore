@@ -252,3 +252,6 @@ paket-files/
 *.sln.iml
 
 .DS_Store
+
+# Bundled JS and CSS
+OidcDebugger/wwwroot/**/*.min.*
