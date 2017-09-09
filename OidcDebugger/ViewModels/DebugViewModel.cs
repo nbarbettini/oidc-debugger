@@ -16,6 +16,6 @@ namespace OidcDebugger.ViewModels
 
         public string ErrorDescription { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> Form { get; set; }
+        public KeyValuePair<string, string>[] Form { get; set; }
     }
 }

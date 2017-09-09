@@ -16,8 +16,8 @@ namespace OidcDebugger.Controllers
                 Method = Request.Method,
                 Referer = HttpContext.Request.Headers["Referer"],
                 Form = Request.HasFormContentType
-                    ? Helpers.Flatten(Request.Form) 
-                    : Enumerable.Empty<KeyValuePair<string, string>>(),
+                    ? Helpers.Flatten(Request.Form).ToArray()
+                    : new KeyValuePair<string, string>[0]
             };
 
             return View(viewModel);
