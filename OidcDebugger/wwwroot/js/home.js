@@ -4,7 +4,7 @@
         authorizeUri: '',
         redirectUri: removeTrailingSlash(window.location.toString()) + '/debug',
         clientId: '',
-        scopes: 'openid ',
+        scopes: getInitialScopes(),
         responseTypesArray: ['code'],
         responseMode: 'form_post',
         state: '',
@@ -72,3 +72,9 @@
         }
     }
 });
+
+function getInitialScopes() {
+    console.log(window.tenant);
+    if (window.tenant === 'oidc') return 'openid ';
+    return '';
+}

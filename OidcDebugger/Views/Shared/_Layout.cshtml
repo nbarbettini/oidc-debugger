@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject AppTenant Tenant;
+
+<!DOCTYPE html>
 <html>
 
   <head>
@@ -26,14 +28,17 @@
       <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
       <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+    <script>
+      window.tenant = "@Tenant.Name";
+    </script>
   </head>
 
   <body>
 
-    <header class="debug__header debug__header-overlay">
+    <header class="debug__header @(Tenant.Name == "oauth" ? "header-oauth" : "header-oidc")">
       <div class="debug__header-content">
         <h1>
-          Open ID Connect <strong>&lt; Debugger /&gt;</strong>
+          <strong>@(Tenant.Name == "oauth" ? "OAuth 2.0" : "OpenID Connect")</strong> &lt;Debugger/&gt;
         </h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -1,10 +1,4 @@
 ﻿.debug__header {
-  background: 
-    linear-gradient(
-      rgba(1, 87, 155, 0.95), 
-      rgba(1, 87, 155, 0.75)
-    ),
-    url("../images/computer-setup.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0% 25%;
@@ -14,6 +8,24 @@
   align-items: center;
   height: 40vh;
   position: relative;
+}
+
+.debug__header.header-oauth {
+  background: 
+  linear-gradient(
+    rgba(1, 87, 155, 0.95), 
+    rgba(1, 87, 155, 0.75)
+  ),
+  url("../images/computer-setup.jpg");
+}
+
+.debug__header.header-oidc {
+  background: 
+  linear-gradient(
+    rgba(247, 140, 64, 0.95), 
+    rgba(247, 140, 64, 0.75)
+  ),
+  url("../images/computer-setup.jpg");
 }
 
 .debug__header-content {
