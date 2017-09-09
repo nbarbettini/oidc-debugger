@@ -30,6 +30,7 @@
 
             var result = {
                 authorizeUri,
+                encodedUri: '',
                 params: [],
                 valid: false
             };
@@ -49,6 +50,15 @@
                         && this.scopes.trim().length
                         && this.responseType.trim().length
                         && this.responseMode.trim().length;
+
+            if (result.valid) {
+                var encoded = result.authorizeUri + '?';
+                for (var i = 0; i < result.params.length; i++) {
+                    encoded += result.params[i].name + '=' + encodeURIComponent(result.params[i].value);
+                    if (i < result.params.length - 1) encoded += '&';
+                }
+                result.encodedUri = encoded;
+            }
 
             return result;
         },

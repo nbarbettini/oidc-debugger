@@ -20,18 +20,6 @@ Vue.component('requestUriCode', {
     props: ['uriObject'],
     template: '#request-uri-code-template',
     computed: {
-        encodedUri: function() {
-            if (!this.hasAuthorizeUri) return '';
-
-            var uri = this.uriObject.authorizeUri + '?';
-
-            for (var i = 0; i < this.uriObject.params.length; i++) {
-                uri += this.uriObject.params[i].name + '=' + encodeURIComponent(this.uriObject.params[i].value);
-                if (i < this.uriObject.params.length - 1) uri += '&';
-            }
-
-            return uri;
-        },
         hasAuthorizeUri: function() {
             return this.uriObject && this.uriObject.authorizeUri;
         }
