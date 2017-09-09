@@ -15,8 +15,7 @@
   linear-gradient(
     rgba(1, 87, 155, 0.95), 
     rgba(1, 87, 155, 0.75)
-  ),
-  url("../images/computer-setup.jpg");
+  );
 }
 
 .debug__header.header-oidc {
@@ -24,8 +23,7 @@
   linear-gradient(
     rgba(247, 140, 64, 0.95), 
     rgba(247, 140, 64, 0.75)
-  ),
-  url("../images/computer-setup.jpg");
+  );
 }
 
 .debug__header-content {
