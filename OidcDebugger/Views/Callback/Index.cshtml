@@ -17,10 +17,10 @@
             The flow was successful.
         </h2>
         <h2 class="h4-responsive" v-if="flow === 'code'">
-            Code: <code>{{code}}</code><br/>
-            <template v-if="state">
-                State: <code>{{state}}</code>
-            </template>
+            Code: <code>{{code.value}}</code>
+        </h2>
+        <h2 class="h4-responsive" v-show="state.exists">
+            State: <code>{{state.value}}</code>
         </h2>
         <h2 class="h4-responsive" v-if="flow === 'code'">
             The authorization server responded with an authorization code because the flow was started with
@@ -40,9 +40,9 @@
         <h2 class="h4-responsive">
             The authorization server responded with an error.
         </h2>
-        <h2>
-            Error: <code>{{error}}</code><br/>
-            {{errorDescription}}
+        <h2 class="h4-responsive">
+            Error: <code>{{error.value}}</code><br/>
+            Description: {{errorDescription.value}}
         </h2>
         <h2 class="h4-responsive">
             This could mean that the flow was not configured correctly, or that the user rejected the authorization.
@@ -50,7 +50,7 @@
     </div>
 
     <div class="debug__callback-info" v-if="success && flow === 'code'">
-        <h3 class="h5-responsive orange-text"><b>Exchange code for tokens</b></h3>
+        <h3 class="h5-responsive orange-text"><b>Step 2: Exchange code for tokens</b></h3>
         <p>
             Now you need to exchange the authorization code for tokens using the token endpoint.
             We can't do this step for you because it involves your client secret.
@@ -61,68 +61,69 @@
                 Content-Type: application/x-www-form-urlencoded
                 <br/>
                 <br/>
-                code=<span class="light-blue-text">{{code}}</span><br/>
+                code=<span class="light-blue-text">{{code.value}}</span><br/>
                 client_id=<span class="light-blue-text">{{clientId}}</span><br/>
                 client_secret=<span class="orange-text">{clientSecret}</span>
             </p>
         </div>
     </div>
 
-    <div class="debug__callback-info" v-if="!success">
-        <h3 class="h5-responsive orange-text"><b>Verify tokens</b></h3>
-        <p>
-            The returned tokens need to be verified to make sure they aren't forged.
-            The <span class="inline-code">/introspect</span> endpoint can do this.
-        </p>
-        <div class="card card-body code-block--small">
-            <p class="card-text white-text">
-                Sit iusto placerat ut.am ex idque tation, eu dicat mundi argumentum vel. No option maluisset sit. Ei quo timeam maluisset definitionem, <span class="light-blue-text">No option maluisset sit.</span> prima iisque id ius, duo ex dignissim persequeris. Ut eos odio appetere sententiae.
-            </p>
+    <div class="debug__callback-info" v-if="success && flow === 'implicit'">
+        <div v-show="accessToken.exists">
+            <h3 class="h5-responsive">Access token</h3>
+            <div class="code-block">
+                <p class="card-text white-text">{{accessToken.value}}</p>
+            </div>
+        </div>
+
+        <div class="debug__callback-info" v-show="idToken.exists">
+            <h3 class="h5-responsive">ID token</h3>
+            <div class="code-block">
+                <p class="card-text white-text">{{idToken.value}}</p>
+            </div>
         </div>
     </div>
 
-    <button type="button" class="btn btn-amber">
-        Show the raw request details
-    </button>
-
-    <div class="jumbotron">
+    <div class="debug__callback-info">
+        <h3 class="h5-responsive">Request details</h3>
         <div>
-            <b>Method:</b> {{method}}
-        </div>
-        
-        <div v-show="code">
-            <b>Code:</b> {{code}}
+            <strong>Method:</strong> {{method}}
         </div>
 
-        <div v-show="state">
-            <b>State:</b> {{state}}
+        <div v-show="query.length > 0">
+            <p><strong>Query values:</strong></p>
+
+            <div class="code-block">
+                <p class="card-text white-text">
+                    <template v-for="param in query">
+                        {{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+                    </template>
+                </p>
+            </div>
         </div>
 
-        <div v-show="error">
-            <div><b>Error:</b> {{error}}</div>
-            <div><b>Description:</b> {{errorDescription}}</div>
+        <div v-show="fragment.length > 0">
+            <p><strong>Fragment values:</strong></p>
+
+            <div class="code-block">
+                <p class="card-text white-text">
+                    <template v-for="param in fragment">
+                        {{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+                    </template>
+                </p>
+            </div>
         </div>
 
-        <div>
-            <p>Raw query values:</p>
+        <div v-show="formBody.length > 0">
+            <p><strong>Form body values:</strong></p>
 
-            <code>
-                <template v-for="param in query">
-                    {{param.name}}={{param.value}}
-                </template>
-            </code>
-        </div>
-
-        <div id="rawFragmentSection" class="hidden">
-            <p>Raw fragment values:</p>
-
-            <div id="rawFragmentParent"></div>
-        </div>
-
-        <div id="rawFormSection" class="hidden">
-            <p>Raw form body values:</p>
-
-            <div id="rawFormParent"></div>
+            <div class="code-block">
+                <p class="card-text white-text">
+                    <template v-for="param in formBody">
+                        {{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+                    </template>
+                </p>
+            </div>
         </div>
     </div>
 </div>

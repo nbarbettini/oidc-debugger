@@ -7,15 +7,20 @@
         method: window.serverInfo.method
     },
     computed: {
-        code: function() { return this.findValue('code').value; },
-        state: function() { return this.findValue('state').value; },
-        error: function() { return this.findValue('error').value; },
-        errorDescription: function() { return this.findValue('error_description').value; },
+        code: function() { return this.findValue('code'); },
+        accessToken: function() { return this.findValue('access_token'); },
+        idToken: function() { return this.findValue('id_token'); },
+        tokenType: function() { return this.findValue('token_type'); },
+        expiresIn: function() { return this.findValue('expires_in'); },
+        state: function() { return this.findValue('state'); },
+        error: function() { return this.findValue('error'); },
+        errorDescription: function() { return this.findValue('error_description'); },
         success: function() {
-            return true; // todo
+            return !this.error.exists && !this.errorDescription.exists;
         },
         flow: function() {
-            return 'code'; // todo
+            if (this.code.exists) return 'code';
+            if (this.accessToken.exists || this.idToken.exists) return 'implicit';
         },
         tokenEndpoint: function() {
             return '/token';
@@ -24,10 +29,14 @@
             return "todo"; // todo
         },
         implicitResponseType: function() {
-            return "todo"; // todo
+            return "token"; // todo
         },
     },
     methods: {
+        decodeUri: function(s) {
+            s = s || '';
+            return decodeURIComponent(s.replace(/\+/g, '%20'));
+        },
         findValue: function(name) {
             var result = {
                 exists: false,
@@ -38,7 +47,7 @@
             var foundInQuery = findValueInArray(this.query, name);
             if (foundInQuery && foundInQuery.length) {
                 result.exists = true;
-                result.value = foundInQuery;
+                result.value = this.decodeUri(foundInQuery);
                 result.source = 'query';
             }
         
@@ -52,7 +61,7 @@
             var foundInFormBody = findValueInArray(this.formBody, name);
             if (foundInFormBody && foundInFormBody.length) {
                 result.exists = true;
-                result.value = foundInFormBody;
+                result.value = this.decodeUri(foundInFormBody);
                 result.source = 'form';
             }
         
