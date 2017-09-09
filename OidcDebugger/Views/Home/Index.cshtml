@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@inject AppTenant Tenant
+
+@{
+    ViewData["Title"] = "Create a request";
 }
 
 <div class="container debug__body" id="form-component">
@@ -51,7 +53,7 @@
 
       <div class="col-5">
         <info-card v-show="selected === 'authorizeUri'" title="Authorize URI">
-          <p>The <b>authorize URI</b> on the authorization server is where an OpenID Connect flow starts.</p>
+          <p>The <b>authorize URI</b> on the authorization server is where an @(Tenant.Name == "oauth" ? "OAuth 2.0" : "OpenID Connect") flow starts.</p>
         </info-card>
 
         <info-card v-show="selected === 'redirectUri'" title="Redirect URI">
@@ -65,8 +67,11 @@
 
         <info-card v-show="selected === 'scopes'" title="Scope">
           <p>Clients can request additional information or permissions via <b>scopes</b>. The <code>openid</code> scope is the only required scope.</p>
-          <p>The OpenID Connect spec <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">defines some scopes</a>,
-          and applications can define their own custom scopes as well.</p>
+          @if (Tenant.Name == "oidc")
+          {
+            <p>The OpenID Connect spec <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">defines some scopes</a>,
+               and applications can define their own custom scopes as well.</p>
+          }
         </info-card>
 
         <info-card v-show="selected === 'state'" title="State">
