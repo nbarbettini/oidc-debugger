@@ -139,12 +139,12 @@
       <div class="col-5">
         <info-card v-show="flow === 'code'" title="Authorization Code flow" class="card-alternate">
           <p>The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.</p>
-          <p>This flow should be used when the application runs on a server, and is not recommended for JavaScript single-page applications.</p>
+          <p>This flow should be used when the application code runs on a secure server (common for MVC and server-rendered pages apps).</p>
         </info-card>
 
         <info-card v-show="flow === 'implicit'" title="Implicit flow" class="card-alternate">
           <p>The authorization server will return an access and/or ID token directly back to the client.</p>
-          <p>This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications.</p>
+          <p>This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications that need to directly receive tokens.</p>
         </info-card>
 
         <info-card v-show="flow === 'hybrid'" title="Hybrid flow" class="card-alternate">
