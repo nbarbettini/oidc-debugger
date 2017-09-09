@@ -74,7 +74,6 @@
 });
 
 function getInitialScopes() {
-    console.log(window.tenant);
     if (window.tenant === 'oidc') return 'openid ';
     return '';
 }
