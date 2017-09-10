@@ -69,6 +69,15 @@
     methods: {
         showInfo: function(event) {
             this.selected = event.target.id;
+        },
+        saveExpectedState: function() {
+            window.sessionStorage.setItem('expectedState', this.state);
+        },
+        saveClientId: function() {
+            window.sessionStorage.setItem('clientId', this.clientId);
+        },
+        saveResponseType: function() {
+            window.sessionStorage.setItem('responseType', this.responseType);
         }
     }
 });

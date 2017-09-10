@@ -16,19 +16,31 @@
         <h2 class="h4-responsive">
             The flow was successful.
         </h2>
-        <h2 class="h4-responsive" v-if="flow === 'code'">
+        <h2 class="h4-responsive" v-show="flow === 'code'">
             Code: <code>{{code.value}}</code>
         </h2>
         <h2 class="h4-responsive" v-show="state.exists">
             State: <code>{{state.value}}</code>
+            <template v-if="expectedState">
+                <br/>
+                <span class="green-text" v-show="state === expectedState">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    The returned state matches the starting state.
+                </span>
+                <span class="orange-text" v-show="state !== expectedState">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    Caution: The returned state does not match the starting state!
+                </span>
+            </template>
         </h2>
+        
         <h2 class="h4-responsive" v-if="flow === 'code'">
             The authorization server responded with an authorization code because the flow was started with
             the <code>code</code> response type.
         </h2>
         <h2 class="h4-responsive" v-if="flow === 'implicit'">
             The authorization server responded with tokens because the flow was started with the
-            <code>{{implicitResponseType}}</code> (implicit) response type.
+            implicit {{responseType ? '(' + responseType + ')' : ''}} response type.
         </h2>
     </div>
 
@@ -57,13 +69,13 @@
         </p>
         <div class="card card-body code-block--small">
             <p class="card-text white-text">
-                POST {{tokenEndpoint}}<br/>
-                Content-Type: application/x-www-form-urlencoded
+                POST <span v-bind:class="{ orange-text: !tokenEndpoint }">{{tokenEndpoint || '{tokenEndpoint}'}}</span><br/>
+                Content-Type: application/x-www-form-urlencoded<br/>
                 <br/>
-                <br/>
-                code=<span class="light-blue-text">{{code.value}}</span><br/>
-                client_id=<span class="orange-text">{clientId}</span><br/>
-                client_secret=<span class="orange-text">{clientSecret}</span>
+                grant_type=authorization_code&amp;<br/>
+                code=<span class="light-blue-text">{{code.value}}</span>&amp;<br/>
+                client_id=<span v-bind:class="{ orange-text: !clientId }">{{clientId || '{clientId}'}}</span>&amp;<br/>
+                client_secret=<span class="orange-text">{clientSecret}</span><br/>
             </p>
         </div>
     </div>
