@@ -19,11 +19,14 @@
         expectedState: function() {
             return sessionStorage.getItem('expectedState') || '';
         },
-        clientId: function() {
+        savedClientId: function() {
             return sessionStorage.getItem('clientId') || '';
         },
-        responseType: function() {
+        savedResponseType: function() {
             return sessionStorage.getItem('responseType') || '';
+        },
+        savedRedirectUri: function() {
+            return sessionStorage.getItem('redirectUri') || '';
         },
         tokenEndpoint: function() {
             return ''; // todo

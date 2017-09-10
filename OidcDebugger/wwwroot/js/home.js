@@ -70,7 +70,7 @@
         showInfo: function(event) {
             this.selected = event.target.id;
         },
-        saveExpectedState: function() {
+        saveState: function() {
             window.sessionStorage.setItem('expectedState', this.state);
         },
         saveClientId: function() {
@@ -78,6 +78,9 @@
         },
         saveResponseType: function() {
             window.sessionStorage.setItem('responseType', this.responseType);
+        },
+        saveRedirectUri: function() {
+            window.sessionStorage.setItem('redirectUri', this.redirectUri);
         }
     }
 });

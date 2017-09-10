@@ -75,7 +75,8 @@
                 grant_type=authorization_code&amp;<br/>
                 code=<span class="light-blue-text">{{code.value}}</span>&amp;<br/>
                 client_id=<span v-bind:class="{ orange-text: !clientId }">{{clientId || '{clientId}'}}</span>&amp;<br/>
-                client_secret=<span class="orange-text">{clientSecret}</span><br/>
+                client_secret=<span class="orange-text">{clientSecret}</span>&amp;<br/>
+                redirect_uri=<span v-bind:class="{ orange-text: !redirectUri }">{{encodeURIComponent(redirectUri) || '{redirectUri}'}}</span>
             </p>
         </div>
     </div>
