@@ -7,5 +7,7 @@ namespace OidcDebugger
         public string Name { get; set; }
         
         public string[] Hostnames { get; set; }
+
+        public string GoogleTrackingId { get; set; }
     }
 }

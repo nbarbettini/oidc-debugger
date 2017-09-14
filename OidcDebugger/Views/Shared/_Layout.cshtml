@@ -28,6 +28,17 @@
       <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
       <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+    <environment names="Staging,Production">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=@Tenant.GoogleTrackingId"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments)};
+        gtag('js', new Date());
+
+        gtag('config', '@Tenant.GoogleTrackingId');
+      </script>
+
+    </environment>
     <script>
       window.tenant = '@Tenant.Shortname';
     </script>
