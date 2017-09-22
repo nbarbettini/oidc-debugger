@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NWebsec.AspNetCore;
 
 namespace OidcDebugger
 {
@@ -43,16 +44,29 @@ namespace OidcDebugger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseCspReportOnly(options => options
+                .DefaultSources(s => s.Self())
+                .ScriptSources(s => s.Self())
+                .ReportUris(r => r.Uris("https://nb.report-uri.io/r/default/csp/reportOnly")));
+
+            app.UseReferrerPolicy(opts => opts.NoReferrer());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                app.UseHsts(options => options.MaxAge(days: 365).IncludeSubdomains());
+
                 app.UseExceptionHandler("/Home/Error");
-            }
+            }            
 
             app.UseStaticFiles();
+
+            app.UseXfo(options => options.SameOrigin());
+            app.UseXXssProtection(options => options.EnabledWithBlockMode());
+            app.UseXContentTypeOptions();
 
             app.UseMultitenancy<AppTenant>();
 
