@@ -1,7 +1,7 @@
 ﻿var formComponent = new Vue({
     el: '#form-component',
     data: {
-        authorizeUri: '',
+        authorizeUri: window.localStorage.getItem('odebugger:authorizeUri') || '',
         redirectUri: removeTrailingSlash(window.location.toString()) + '/debug',
         clientId: '',
         scopes: getInitialScopes(),
@@ -69,6 +69,9 @@
     methods: {
         showInfo: function(event) {
             this.selected = event.target.id;
+        },
+        saveAuthorizeUri: function() {
+            window.localStorage.setItem('odebugger:authorizeUri', this.authorizeUri);
         },
         saveState: function() {
             window.sessionStorage.setItem('expectedState', this.state);

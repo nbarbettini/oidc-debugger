@@ -12,7 +12,8 @@
             <label for="authorizeUri">
                 Authorize URI <span class="required-text">(required)</span>
             </label>
-            <input type="text" id="authorizeUri" class="form-control" v-model="authorizeUri" v-on:focus="showInfo" required />
+            <input type="text" id="authorizeUri" class="form-control"
+                   v-model="authorizeUri" v-on:focus="showInfo" v-on:input="saveAuthorizeUri" required />
         </div>
 
         <div class="md-form">
