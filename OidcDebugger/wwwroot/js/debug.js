@@ -15,22 +15,29 @@
         state: function() { return this.findValue('state'); },
         error: function() { return this.findValue('error'); },
         errorDescription: function() { return this.findValue('error_description'); },
+
+        expectedState: function() {
+            return sessionStorage.getItem('odebugger:expectedState') || '';
+        },
+        savedClientId: function() {
+            return localStorage.getItem('odebugger:clientId') || '';
+        },
+        savedResponseType: function() {
+            return localStorage.getItem('odebugger:responseType') || '';
+        },
+        savedRedirectUri: function() {
+            return sessionStorage.getItem('odebugger:redirectUri') || '';
+        },
+        tokenEndpoint: function() {
+            return ''; // todo
+        },
         success: function() {
             return !this.error.exists && !this.errorDescription.exists;
         },
         flow: function() {
             if (this.code.exists) return 'code';
             if (this.accessToken.exists || this.idToken.exists) return 'implicit';
-        },
-        tokenEndpoint: function() {
-            return '/token';
-        }, // todo
-        clientId: function() {
-            return "todo"; // todo
-        },
-        implicitResponseType: function() {
-            return "token"; // todo
-        },
+        }
     },
     methods: {
         decodeUri: function(s) {
