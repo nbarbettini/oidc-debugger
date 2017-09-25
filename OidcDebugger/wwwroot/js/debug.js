@@ -61,7 +61,7 @@
             var foundInFragment = findValueInArray(this.fragment, name);
             if (foundInFragment && foundInFragment.length) {
                 result.exists = true;
-                result.value = foundInFragment;
+                result.value = this.decodeUri(foundInFragment);
                 result.source = 'fragment';
             }
         
