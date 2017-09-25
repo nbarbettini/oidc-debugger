@@ -79,9 +79,9 @@
                 <br/>
                 grant_type=authorization_code&amp;<br/>
                 code=<span class="light-blue-text">{{code.value}}</span>&amp;<br/>
-                client_id=<span v-bind:class="{ 'orange-text': !savedClientId }">{{savedClientId || '{clientId}'}}</span>&amp;<br/>
+                client_id=<span v-bind:class="{ 'orange-text': !savedClientId, 'light-blue-text': savedClientId }">{{savedClientId || '{clientId}'}}</span>&amp;<br/>
                 client_secret=<span class="orange-text">{clientSecret}</span>&amp;<br/>
-                redirect_uri=<span v-bind:class="{ 'orange-text': !savedRedirectUri }">{{encodeURIComponent(savedRedirectUri) || '{redirectUri}'}}</span>
+                redirect_uri=<span v-bind:class="{ 'orange-text': !savedRedirectUri, 'light-blue-text': savedRedirectUri }">{{encodeURIComponent(savedRedirectUri) || '{redirectUri}'}}</span>
             </p>
         </div>
     </div>
