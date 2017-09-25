@@ -7,6 +7,12 @@
 @Html.Partial("_ServerInfo")
 
 <div class="container debug__callback" id="debug-view-component"> 
+    <h2 class="pull-right">
+        <a href="/">
+            <i class="fa fa-repeat" aria-hidden="true"></i>
+            Start over
+        </a>
+    </h2>
 
     <div class="debug__callback-header" v-if="success">
         <h1 class="green-text">
