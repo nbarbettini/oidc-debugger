@@ -1,12 +1,12 @@
 ﻿var formComponent = new Vue({
     el: '#form-component',
     data: {
-        authorizeUri: window.localStorage.getItem('odebugger:authorizeUri') || '',
-        redirectUri: removeTrailingSlash(window.location.toString()) + '/debug',
-        clientId: '',
-        scopes: getInitialScopes(),
-        responseTypesArray: ['code'],
-        responseMode: 'form_post',
+        authorizeUri: fromLocalStorage('odebugger:authorizeUri') || '',
+        redirectUri: defaultRedirectUri(),
+        clientId: fromLocalStorage('odebugger:clientId') || '',
+        scopes: defaultScopes(),
+        responseTypesArray: loadResponseTypes() || ['code'],
+        responseMode: fromLocalStorage('odebugger:responseMode') || 'form_post',
         state: '',
         nonce: randomness(),
         selected: ''
@@ -70,25 +70,36 @@
         showInfo: function(event) {
             this.selected = event.target.id;
         },
-        saveAuthorizeUri: function() {
+        saveParameters: function() {
             window.localStorage.setItem('odebugger:authorizeUri', this.authorizeUri);
-        },
-        saveState: function() {
-            window.sessionStorage.setItem('expectedState', this.state);
-        },
-        saveClientId: function() {
-            window.sessionStorage.setItem('clientId', this.clientId);
-        },
-        saveResponseType: function() {
-            window.sessionStorage.setItem('responseType', this.responseType);
-        },
-        saveRedirectUri: function() {
-            window.sessionStorage.setItem('redirectUri', this.redirectUri);
+            window.sessionStorage.setItem('odebugger:expectedState', this.state);
+            window.localStorage.setItem('odebugger:clientId', this.clientId);
+            window.localStorage.setItem('odebugger:responseType', this.responseType);
+            window.localStorage.setItem('odebugger:responseMode', this.responseMode);
+            window.sessionStorage.setItem('odebugger:redirectUri', this.redirectUri);
         }
+    },
+    created: function() {
+        this.saveParameters();
     }
 });
 
-function getInitialScopes() {
+function fromLocalStorage(key) {
+    return window.localStorage.getItem(key);
+}
+
+function loadResponseTypes() {
+    var savedResponseTypes = fromLocalStorage('odebugger:responseType');
+    if (!savedResponseTypes) return;
+
+    return savedResponseTypes.split(' ');
+}
+
+function defaultRedirectUri() {
+    return removeTrailingSlash(window.location.toString()) + '/debug';
+}
+
+function defaultScopes() {
     if (window.tenant === 'oidc') return 'openid ';
     return '';
 }

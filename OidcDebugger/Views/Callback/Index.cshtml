@@ -22,14 +22,13 @@
         <h2 class="h4-responsive" v-show="state.exists">
             State: <code>{{state.value}}</code>
             <template v-if="expectedState">
-                <br/>
-                <span class="green-text" v-show="state === expectedState">
+                <span class="green-text" v-show="state.value === expectedState">
                     <i class="fa fa-check-circle" aria-hidden="true"></i>
-                    The returned state matches the starting state.
+                    Matches the original state
                 </span>
-                <span class="orange-text" v-show="state !== expectedState">
+                <span class="orange-text" v-show="state.value !== expectedState">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    Caution: The returned state does not match the starting state!
+                    Does not match the original state: <code>{{expectedState}}</code>
                 </span>
             </template>
         </h2>
@@ -69,14 +68,14 @@
         </p>
         <div class="card card-body code-block--small">
             <p class="card-text white-text">
-                POST <span v-bind:class="{ orange-text: !tokenEndpoint }">{{tokenEndpoint || '{tokenEndpoint}'}}</span><br/>
+                POST <span v-bind:class="{ 'orange-text': !tokenEndpoint }">{{tokenEndpoint || '{tokenEndpoint}'}}</span><br/>
                 Content-Type: application/x-www-form-urlencoded<br/>
                 <br/>
                 grant_type=authorization_code&amp;<br/>
                 code=<span class="light-blue-text">{{code.value}}</span>&amp;<br/>
-                client_id=<span v-bind:class="{ orange-text: !clientId }">{{clientId || '{clientId}'}}</span>&amp;<br/>
+                client_id=<span v-bind:class="{ 'orange-text': !savedClientId }">{{savedClientId || '{clientId}'}}</span>&amp;<br/>
                 client_secret=<span class="orange-text">{clientSecret}</span>&amp;<br/>
-                redirect_uri=<span v-bind:class="{ orange-text: !redirectUri }">{{encodeURIComponent(redirectUri) || '{redirectUri}'}}</span>
+                redirect_uri=<span v-bind:class="{ 'orange-text': !savedRedirectUri }">{{encodeURIComponent(savedRedirectUri) || '{redirectUri}'}}</span>
             </p>
         </div>
     </div>

@@ -17,16 +17,16 @@
         errorDescription: function() { return this.findValue('error_description'); },
 
         expectedState: function() {
-            return sessionStorage.getItem('expectedState') || '';
+            return sessionStorage.getItem('odebugger:expectedState') || '';
         },
         savedClientId: function() {
-            return sessionStorage.getItem('clientId') || '';
+            return localStorage.getItem('odebugger:clientId') || '';
         },
         savedResponseType: function() {
-            return sessionStorage.getItem('responseType') || '';
+            return localStorage.getItem('odebugger:responseType') || '';
         },
         savedRedirectUri: function() {
-            return sessionStorage.getItem('redirectUri') || '';
+            return sessionStorage.getItem('odebugger:redirectUri') || '';
         },
         tokenEndpoint: function() {
             return ''; // todo
