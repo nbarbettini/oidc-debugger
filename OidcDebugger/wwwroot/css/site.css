@@ -159,6 +159,7 @@
   background-color: #222228;
   font-family: monospace;
   padding: 27px;
+  overflow-x: scroll;
 }
 
 .code-block--small {
@@ -167,6 +168,7 @@
   padding: 27px;
   max-width: 70%;
   margin: auto;
+  overflow-x: scroll;
 }
 
 .code-line {
