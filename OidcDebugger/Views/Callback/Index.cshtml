@@ -55,14 +55,13 @@
             <b>Error</b>
         </h1>
         <h2 class="h4-responsive">
-            The authorization server responded with an error.
+            The authorization server responded with an error. This could mean that the request parameters were incorrect, or that the user rejected the authorization.
         </h2>
-        <h2 class="h4-responsive">
-            Error: <code>{{error.value}}</code><br/>
+        <h2 class="h4-responsive" v-show="error.exists">
+            Error: <code>{{error.value}}</code>
+        </h2>
+        <h2 class="h4-responsive" v-show="errorDescription.exists">
             Description: {{errorDescription.value}}
-        </h2>
-        <h2 class="h4-responsive">
-            This could mean that the flow was not configured correctly, or that the user rejected the authorization.
         </h2>
     </div>
 
