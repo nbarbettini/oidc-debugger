@@ -1,13 +1,13 @@
 ﻿var formComponent = new Vue({
     el: '#form-component',
     data: {
-        authorizeUri: fromLocalStorage('odebugger:authorizeUri') || '',
-        redirectUri: defaultRedirectUri(),
-        clientId: fromLocalStorage('odebugger:clientId') || '',
-        scopes: defaultScopes(),
+        authorizeUri: getHint('authorize_uri_hint')[0] || fromLocalStorage('odebugger:authorizeUri') || '',
+        redirectUri: getHint('redirect_uri_hint')[0] || defaultRedirectUri(),
+        clientId: getHint('client_id_hint')[0] || fromLocalStorage('odebugger:clientId') || '',
+        scopes: getHint('scope_hint')[0] || defaultScopes(),
         responseTypesArray: loadResponseTypes() || ['code'],
-        responseMode: fromLocalStorage('odebugger:responseMode') || 'form_post',
-        state: '',
+        responseMode: getHint('response_mode_hint')[0] || fromLocalStorage('odebugger:responseMode') || 'form_post',
+        state: getHint('state_hint')[0] || '',
         nonce: randomness(),
         selected: ''
     },
@@ -35,21 +35,21 @@
                 valid: false
             };
 
-            result.params.push({ name: 'client_id', value: this.clientId.trim() });
-            result.params.push({ name: 'redirect_uri', value: this.redirectUri.trim() });
-            result.params.push({ name: 'scope', value: this.scopes.trim() });
-            result.params.push({ name: 'response_type', value: this.responseType.trim() });
-            result.params.push({ name: 'response_mode', value: this.responseMode.trim() });
+            result.params.push({ name: 'client_id', hintName: 'client_id_hint', value: this.clientId.trim() });
+            result.params.push({ name: 'redirect_uri', hintName: 'redirect_uri_hint', value: this.redirectUri.trim() });
+            result.params.push({ name: 'scope', hintName: 'scope_hint', value: this.scopes.trim() });
+            result.params.push({ name: 'response_type', hintName: 'response_type_hint', value: this.responseType.trim() });
+            result.params.push({ name: 'response_mode', hintName: 'response_mode_hint', value: this.responseMode.trim() });
 
             if (this.state.length) result.params.push({ name: 'state', value: this.state });
             if (this.nonce.length) result.params.push({ name: 'nonce', value: this.nonce });
 
             // Quick 'n dirty form validation
-            result.valid = this.clientId.trim().length
-                        && this.redirectUri.trim().length
-                        && this.scopes.trim().length
-                        && this.responseType.trim().length
-                        && this.responseMode.trim().length;
+            result.valid = this.clientId.trim().length > 0
+                        && this.redirectUri.trim().length > 0
+                        && this.scopes.trim().length > 0
+                        && this.responseType.trim().length > 0
+                        && this.responseMode.trim().length > 0;
 
             if (result.valid) {
                 var encoded = result.authorizeUri + '?';
@@ -84,11 +84,21 @@
     }
 });
 
+function getHint(key) {
+    if (!key) return;
+    return querystringAsDictionary(window.location.search)[key] || [];
+}
+
 function fromLocalStorage(key) {
     return window.localStorage.getItem(key);
 }
 
 function loadResponseTypes() {
+    var responseTypeHint = getHint('response_type_hint');
+    if (responseTypeHint && responseTypeHint.length > 0) {
+        return responseTypeHint;
+    }
+
     var savedResponseTypes = fromLocalStorage('odebugger:responseType');
     if (!savedResponseTypes) return;
 
@@ -96,7 +106,7 @@ function loadResponseTypes() {
 }
 
 function defaultRedirectUri() {
-    return removeTrailingSlash(window.location.toString()) + '/debug';
+    return window.location.origin + '/debug';
 }
 
 function defaultScopes() {
