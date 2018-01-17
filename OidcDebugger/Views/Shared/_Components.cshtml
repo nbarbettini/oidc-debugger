@@ -11,10 +11,15 @@
           </span>
         </template>
       </template>
+       
+      <copy-button class="bottom-right" 
+                   v-bind:value="uriObject.encodedUri"
+                   v-bind:class="{ disabled: !uriObject.valid }"
+                   v-if="hasAuthorizeUri">
+      </copy-button>
     </p>
   </div>
 </script>
-
 <script>
 Vue.component('requestUriCode', {
     props: ['uriObject'],
@@ -46,10 +51,25 @@ Vue.component('requestUriCode', {
     </div>
   </div>
 </script>
-
 <script>
   Vue.component('infoCard', {
     props: ['title', 'text'],
     template: '#info-card-template'
   });
+</script>
+
+<!-- copyButton -->
+
+<script type="text/x-template" id="copy-button-template">
+    <button type="button" title="Copy"
+            class="btn btn-primary btn-sm"
+            v-clipboard:copy="value">
+        <i class="fa fa-clipboard" aria-hidden="true"></i>
+    </button>
+</script>
+<script>
+    Vue.component('copyButton', {
+        props: ['value'],
+        template: '#copy-button-template'
+    });
 </script>

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" integrity="sha256-HSciL+lazQcMW++cz2zjsrvhGmQk1mh2nzXl/kqTSjY=" crossorigin="anonymous" />
-
+    
     <environment names="Development">     
       <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -21,11 +21,13 @@
     </environment>
     <environment names="Development">
       <script src="https://unpkg.com/vue@2.4.2/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-clipboard2@0.0.8/dist/vue-clipboard.js"></script>
       <script src="~/js/site.js"></script>
       <script src="~/js/util.js"></script>
     </environment>
     <environment names="Staging,Production">
       <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/vue-clipboard2@0.0.8/dist/vue-clipboard.min.js"></script>
       <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">

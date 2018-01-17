@@ -2,7 +2,9 @@
     el: "#debug-view-component",
     data: {
         query: parseValues(window.location.search),
+        rawQuery: window.location.search.substring(1),
         fragment: parseValues(window.location.hash),
+        rawFragment: window.location.hash.substring(1),
         formBody: window.serverInfo.formBody,
         method: window.serverInfo.method
     },

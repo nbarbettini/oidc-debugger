@@ -49,15 +49,18 @@
         <div title="Authorization code" class="code-block success" v-show="flow === 'code'">
             <p class="card-text white-text">
                 {{code.value}}
+                <copy-button class="bottom-right" v-bind:value="code.value"></copy-button>
             </p>
         </div>
 
         <div title="Access token" class="code-block success" v-show="accessToken.exists">
             <p class="card-text white-text">{{accessToken.value}}</p>
+            <copy-button class="bottom-right" v-bind:value="accessToken.value"></copy-button>
         </div>
 
         <div title="ID token" class="code-block success" v-show="idToken.exists">
             <p class="card-text white-text">{{idToken.value}}</p>
+            <copy-button class="bottom-right" v-bind:value="idToken.value"></copy-button>
         </div>
     </div>
 
@@ -73,6 +76,7 @@
             <p class="card-text white-text">
                 {{errorDescription.value || '(no error description)'}}
             </p>
+            <copy-button class="bottom-right" v-bind:value="errorDescription.value" v-if="errorDescription.value"></copy-button>
         </div>
     </div>
 
@@ -118,6 +122,7 @@
                         <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
                     </template>
                 </p>
+                <copy-button class="bottom-right" v-bind:value="rawQuery"></copy-button>
             </div>
         </div>
 
@@ -128,6 +133,7 @@
                         <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
                     </template>
                 </p>
+                <copy-button class="bottom-right" v-bind:value="rawFragment"></copy-button>
             </div>
         </div>
     </div>

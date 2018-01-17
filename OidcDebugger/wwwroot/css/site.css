@@ -216,3 +216,9 @@
 .code-block .code-line-param:nth-child(n+2) {
   margin-left: 20px;
 }
+
+.bottom-right {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+}
