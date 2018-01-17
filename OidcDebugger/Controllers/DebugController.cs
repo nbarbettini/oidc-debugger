@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
 using OidcDebugger.ViewModels;
 
 namespace OidcDebugger.Controllers
