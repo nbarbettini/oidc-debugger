@@ -39,6 +39,12 @@
             if (this.accessToken.exists || this.idToken.exists) return 'implicit';
         }
     },
+    filters: {
+        upper: function (value) {
+            if (!value) return '';
+            return value.toString().toUpperCase();
+        }
+    },
     methods: {
         decodeUri: function(s) {
             s = s || '';

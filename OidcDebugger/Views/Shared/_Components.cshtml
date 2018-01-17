@@ -6,7 +6,7 @@
       <template v-if="hasAuthorizeUri">
         <span class="code-line light-blue-text">{{uriObject.authorizeUri}}</span>
         <template v-for="(param, index) in uriObject.params">
-          <span class="code-line">
+          <span class="code-line code-line-param">
             {{index === 0 ? '?' : '&amp;'}}{{param.name}}=<span class="light-blue-text">{{param.value}}</span>
           </span>
         </template>

@@ -76,6 +76,14 @@
   padding: 1em;
 }
 
+.debug__callback-header {
+    padding-bottom: 2em;
+}
+
+.debug__callback-header h1 {
+    margin-bottom: 30px;
+}
+
 .debug__callback-header h2 {
   margin-bottom: 20px;
 }
@@ -152,29 +160,59 @@
 }
 
 .debug__callback-info {
-  padding: 2em 0;
+  padding-bottom: 2em;
 }
 
 .code-block {
-  background-color: #222228;
-  font-family: monospace;
-  padding: 27px;
-  overflow-x: scroll;
+    background-color: rgba(0, 0, 0, 0.80);
+    font-family: Consolas, monospace;
+    padding: 20px;
+    position: relative;
+    margin: 1em 0;
+    word-wrap: break-word;
+    line-height: 24px;
 }
 
-.code-block--small {
-  background-color: #222228;
-  font-family: monospace;
-  padding: 27px;
-  max-width: 70%;
-  margin: auto;
-  overflow-x: scroll;
+.code-block[title] {
+    padding-top: 56px;
+}
+
+.code-block:before {
+    font-family: Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 40px;
+    content: attr(title);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    text-indent: 15px;
+    background-color: #777;
+}
+
+.code-block.success:before {
+    background: #4CAF50
+}
+
+.code-block.next-step:before {
+    background-color: #FFA65A;
+}
+
+.code-block.error:before {
+    background-color: #FF5D50;
 }
 
 .code-line {
   display: block;
+  margin-bottom: -6px;
 }
 
-.code-block .code-line:nth-child(n+2) {
+.code-line:nth-child(n+2) {
+    padding-top: 4px;
+}
+
+.code-block .code-line-param:nth-child(n+2) {
   margin-left: 20px;
 }
