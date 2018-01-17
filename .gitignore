@@ -255,3 +255,7 @@ paket-files/
 
 # Bundled JS and CSS
 OidcDebugger/wwwroot/**/*.min.*
+
+# This folder would normally be ignored
+# by the "Debug" rule
+!OidcDebugger/Views/Debug/

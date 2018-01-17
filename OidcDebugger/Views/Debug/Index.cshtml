@@ -1,0 +1,153 @@
+﻿@model OidcDebugger.ViewModels.DebugViewModel
+
+@{
+    ViewData["Title"] = "Debug a request";
+}
+
+@Html.Partial("_ServerInfo")
+
+<div class="container debug__callback" id="debug-view-component"> 
+    <h2 class="pull-right">
+        <a href="/">
+            <i class="fa fa-repeat" aria-hidden="true"></i>
+            Start over
+        </a>
+    </h2>
+
+    <div class="debug__callback-header" v-if="success">
+        <h1 class="green-text">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <b>Success!</b>
+        </h1>
+        <h2 class="h4-responsive">
+            The flow was successful.
+        </h2>
+        <h2 class="h4-responsive" v-show="flow === 'code'">
+            Code: <code>{{code.value}}</code>
+        </h2>
+        <h2 class="h4-responsive" v-show="state.exists">
+            State: <code>{{state.value}}</code>
+            <template v-if="expectedState">
+                <span class="green-text" v-show="state.value === expectedState">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    Matches the original state
+                </span>
+                <span class="orange-text" v-show="state.value !== expectedState">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    Does not match the original state: <code>{{expectedState}}</code>
+                </span>
+            </template>
+        </h2>
+        
+        <h2 class="h4-responsive" v-if="flow === 'code'">
+            The authorization server responded with an authorization code because the flow was started with
+            the <code>code</code> response type.
+        </h2>
+        <h2 class="h4-responsive" v-if="flow === 'implicit'">
+            The authorization server responded with tokens because the flow was started with the
+            implicit {{responseType ? '(' + responseType + ')' : ''}} response type.
+        </h2>
+    </div>
+
+    <div class="debug__callback-header" v-if="!success">
+        <h1 class="red-text">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <b>Error</b>
+        </h1>
+        <h2 class="h4-responsive">
+            The authorization server responded with an error. This could mean that the request parameters were incorrect, or that the user rejected the authorization.
+        </h2>
+        <h2 class="h4-responsive" v-show="error.exists">
+            Error: <code>{{error.value}}</code>
+        </h2>
+        <h2 class="h4-responsive" v-show="errorDescription.exists">
+            Description: {{errorDescription.value}}
+        </h2>
+    </div>
+
+    <div class="debug__callback-info" v-if="success && flow === 'code'">
+        <h3 class="h5-responsive orange-text"><b>Step 2: Exchange code for tokens</b></h3>
+        <p>
+            Now you need to exchange the authorization code for tokens using the token endpoint.
+            We can't do this step for you because it involves your client secret.
+        </p>
+        <div class="card card-body code-block--small">
+            <p class="card-text white-text">
+                POST <span v-bind:class="{ 'orange-text': !tokenEndpoint }">{{tokenEndpoint || '{tokenEndpoint}'}}</span><br/>
+                Content-Type: application/x-www-form-urlencoded<br/>
+                <br/>
+                grant_type=authorization_code&amp;<br/>
+                code=<span class="light-blue-text">{{code.value}}</span>&amp;<br/>
+                client_id=<span v-bind:class="{ 'orange-text': !savedClientId, 'light-blue-text': savedClientId }">{{savedClientId || '{clientId}'}}</span>&amp;<br/>
+                client_secret=<span class="orange-text">{clientSecret}</span>&amp;<br/>
+                redirect_uri=<span v-bind:class="{ 'orange-text': !savedRedirectUri, 'light-blue-text': savedRedirectUri }">{{encodeURIComponent(savedRedirectUri) || '{redirectUri}'}}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="debug__callback-info" v-if="success && flow === 'implicit'">
+        <div v-show="accessToken.exists">
+            <h3 class="h5-responsive">Access token</h3>
+            <div class="code-block">
+                <p class="card-text white-text">{{accessToken.value}}</p>
+            </div>
+        </div>
+
+        <div class="debug__callback-info" v-show="idToken.exists">
+            <h3 class="h5-responsive">ID token</h3>
+            <div class="code-block">
+                <p class="card-text white-text">{{idToken.value}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="debug__callback-info">
+        <h3 class="h5-responsive">Request details</h3>
+        <div>
+            <strong>Method:</strong> {{method}}
+        </div>
+
+        <div v-show="query.length > 0">
+            <p><strong>Query values:</strong></p>
+
+            <div class="code-block">
+                <p class="card-text white-text">
+                    <template v-for="param in query">
+                        {{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+                    </template>
+                </p>
+            </div>
+        </div>
+
+        <div v-show="fragment.length > 0">
+            <p><strong>Fragment values:</strong></p>
+
+            <div class="code-block">
+                <p class="card-text white-text">
+                    <template v-for="param in fragment">
+                        {{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+                    </template>
+                </p>
+            </div>
+        </div>
+
+        <div v-show="formBody.length > 0">
+            <p><strong>Form body values:</strong></p>
+
+            <div class="code-block">
+                <p class="card-text white-text">
+                    <template v-for="param in formBody">
+                        {{param.name}}=<span class="light-blue-text">{{param.value}}</span><br/>
+                    </template>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<environment names="Development">
+    <script src="~/js/debug.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/debug.min.js" asp-append-version="true"></script>
+</environment>
