@@ -6,7 +6,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @Tenant.Name Debugger</title>
+    <title>@Tenant.Name debugger</title>
+    
+    @Html.Partial("_Favicons")
+
+    <meta name="description" content="@Tenant.Description" />
+    <meta property="og:title" content="@Tenant.Name" />
+    <meta property="og:image" content="@Url.AbsoluteContent("~/images/gear-lg.png")" />
+    <meta property="og:url" content="@Url.AbsoluteContent("~")" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -51,7 +58,7 @@
     <header class="debug__header @(Tenant.Shortname == "oauth" ? "header-oauth" : "header-oidc")">
       <div class="debug__header-content">
         <h1>
-          <strong>@Tenant.Name</strong> &lt;Debugger/&gt;
+          <strong>@Tenant.Name</strong> &lt;debugger/&gt;
         </h1>
         <p>
           Test @Tenant.Name requests and debug responses.
