@@ -43,13 +43,7 @@ namespace OidcDebugger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseCspReportOnly(options => options
-                .DefaultSources(s => s.Self())
-                .ScriptSources(s => s.Self().CustomSources("https://cdnjs.cloudflare.com", "https://unpkg.com", "https://maxcdn.bootstrapcdn.com", "https://code.jquery.com"))
-                .StyleSources(s => s.CustomSources("https://fonts.googleapis.com", "https://maxcdn.bootstrapcdn.com"))
-                .ReportUris(r => r.Uris("https://nb.report-uri.io/r/default/csp/reportOnly")));
-
-            app.UseReferrerPolicy(opts => opts.NoReferrer());
+            app.UseReferrerPolicy(opts => opts.NoReferrerWhenDowngrade());
 
             if (env.IsDevelopment())
             {
