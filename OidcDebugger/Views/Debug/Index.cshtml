@@ -77,7 +77,7 @@
         <code-card class="error"
                    v-bind:title="error.value ? 'Error: ' + error.value : 'Error'"
                    v-bind:value="errorDescription.value">
-            {{errorDescription.value || '(no error description)'}}
+            {{safeUnescape(errorDescription.value) || '(no error description)'}}
         </code-card>
     </div>
 

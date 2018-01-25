@@ -21,3 +21,8 @@ function querystringAsDictionary(qs) {
     });
     return dict;
 }
+
+// Unescapes a limited number of known HTML entity codes
+function safeUnescape(s) {
+    return s.replace('&#x27;', "'");
+}

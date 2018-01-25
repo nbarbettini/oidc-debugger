@@ -48,6 +48,7 @@
         }
     },
     methods: {
+        safeUnescape,
         decodeUri: function(s) {
             s = s || '';
             return decodeURIComponent(s.replace(/\+/g, '%20'));
