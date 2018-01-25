@@ -72,7 +72,12 @@
         </info-card>
 
         <info-card v-show="selected === 'scopes'" title="Scope">
-          <p>Clients can request additional information or permissions via <b>scopes</b>. The <code>openid</code> scope is the only required scope.</p>
+          <p>Clients can request additional information or permissions via <b>scopes</b>.
+          @if (Tenant.Shortname == "oidc")
+          {
+               <text>The <code>openid</code> scope is the only required scope.</text>
+          }
+          </p>
           @if (Tenant.Shortname == "oidc")
           {
             <p>The OpenID Connect spec defines some <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">standard scopes</a>,
@@ -107,11 +112,14 @@
                            v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
                     <label for="responseType-token" class="select-label">token</label>
                 </div>
+                @if (Tenant.Shortname == "oidc")
+                {
                 <div class="form-group">
                     <input type="checkbox" id="responseType-id_token" value="id_token"
                            v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
                     <label for="responseType-id_token" class="select-label">id_token</label>
                 </div>
+                }
             </div>
         </div>
 
