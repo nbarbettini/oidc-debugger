@@ -105,7 +105,9 @@
     <div class="debug__callback-info">
         <h3 class="h5-responsive">{{method | upper}} request details</h3>
 
-        <code-card title="Form body values" v-show="formBody.length > 0">
+        <code-card title="Form body values"
+                   v-show="formBody.length > 0"
+                   v-bind:value="reconstructedForm">
             <template v-for="param in formBody">
                 <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
             </template>

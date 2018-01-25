@@ -39,6 +39,11 @@
         flow: function() {
             if (this.code.exists) return 'code';
             if (this.accessToken.exists || this.idToken.exists) return 'implicit';
+        },
+
+        reconstructedForm: function() {
+            if (!this.formBody || this.formBody.length === 0) return '';
+            return this.formBody.map(function(x) { return x.name + '=' + x.value }).join('&');
         }
     },
     filters: {
