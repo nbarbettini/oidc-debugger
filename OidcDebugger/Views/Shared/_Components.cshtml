@@ -58,6 +58,21 @@ Vue.component('requestUriCode', {
   });
 </script>
 
+<script type="text/x-template" id="code-card-template">
+  <div class="card card-body code-block">
+      <p class="card-text white-text">
+          <slot></slot>
+          <copy-button class="bottom-right" v-bind:value="value" v-show="value"></copy-button>
+      </p>
+  </div>
+</script>
+<script>
+  Vue.component('codeCard', {
+    props: ['value'],
+    template: '#code-card-template'
+  });
+</script>
+
 <!-- copyButton -->
 
 <script type="text/x-template" id="copy-button-template">

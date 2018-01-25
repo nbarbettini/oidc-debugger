@@ -46,22 +46,23 @@
             </template>
         </h2>
 
-        <div title="Authorization code" class="code-block success" v-show="flow === 'code'">
-            <p class="card-text white-text">
-                {{code.value}}
-                <copy-button class="bottom-right" v-bind:value="code.value"></copy-button>
-            </p>
-        </div>
+        <code-card title="Authorization code" class="success"
+                   v-show="flow === 'code'"
+                   v-bind:value="code.value">
+            {{code.value}}
+        </code-card>
 
-        <div title="Access token" class="code-block success" v-show="accessToken.exists">
-            <p class="card-text white-text">{{accessToken.value}}</p>
-            <copy-button class="bottom-right" v-bind:value="accessToken.value"></copy-button>
-        </div>
+        <code-card title="Access token" class="success"
+                   v-show="accessToken.exists"
+                   v-bind:value="accessToken.value">
+            {{accessToken.value}}
+        </code-card>
 
-        <div title="ID token" class="code-block success" v-show="idToken.exists">
-            <p class="card-text white-text">{{idToken.value}}</p>
-            <copy-button class="bottom-right" v-bind:value="idToken.value"></copy-button>
-        </div>
+        <code-card title="ID token" class="success"
+                   v-show="idToken.exists"
+                   v-bind:value="idToken.value">
+            {{idToken.value}}
+        </code-card>
     </div>
 
     <div class="debug__callback-header" v-if="!success">
@@ -72,12 +73,12 @@
         <h2 class="h4-responsive">
             The authorization server responded with an error. This could mean that the request parameters were incorrect, or that the user rejected the authorization.
         </h2>
-        <div v-bind:title="error.value ? 'Error: ' + error.value : 'Error'" class="code-block error">
-            <p class="card-text white-text">
-                {{errorDescription.value || '(no error description)'}}
-            </p>
-            <copy-button class="bottom-right" v-bind:value="errorDescription.value" v-if="errorDescription.value"></copy-button>
-        </div>
+
+        <code-card class="error"
+                   v-bind:title="error.value ? 'Error: ' + error.value : 'Error'"
+                   v-bind:value="errorDescription.value">
+            {{errorDescription.value || '(no error description)'}}
+        </code-card>
     </div>
 
     <div class="debug__callback-info" v-if="success && flow === 'code'">
@@ -86,56 +87,45 @@
             Now you need to exchange the authorization code for tokens using the token endpoint.
             We can't do this step for you because it involves your client secret.
         </p>
-        <div title="/token request" class="code-block next-step">
-            <p class="card-text white-text">
-                <span class="code-line">POST <span v-bind:class="{ 'orange-text': !tokenEndpoint }">{{tokenEndpoint || '{tokenEndpoint}'}}</span></span>
-                <span class="code-line">Content-Type: application/x-www-form-urlencoded</span>
-                <span class="code-line">&nbsp;</span>
-                <span id="token-request-body">
-                    <span class="code-line">grant_type=authorization_code&amp;</span>
-                    <span class="code-line">code=<span class="light-blue-text">{{code.value}}</span>&amp;</span>
-                    <span class="code-line">client_id=<span v-bind:class="{ 'orange-text': !savedClientId, 'light-blue-text': savedClientId }">{{savedClientId || '{clientId}'}}</span>&amp;</span>
-                    <span class="code-line">client_secret=<span class="orange-text">{clientSecret}</span>&amp;</span>
-                    <span class="code-line">redirect_uri=<span v-bind:class="{ 'orange-text': !savedRedirectUri, 'light-blue-text': savedRedirectUri }">{{encodeURIComponent(savedRedirectUri) || '{redirectUri}'}}</span></span>
-                </span>
-            </p>
-        </div>
+
+        <code-card class="next-step">
+            <span class="code-line">POST <span v-bind:class="{ 'orange-text': !tokenEndpoint }">{{tokenEndpoint || '{tokenEndpoint}'}}</span></span>
+            <span class="code-line">Content-Type: application/x-www-form-urlencoded</span>
+            <span class="code-line">&nbsp;</span>
+            <span id="token-request-body">
+                <span class="code-line">grant_type=authorization_code&amp;</span>
+                <span class="code-line">code=<span class="light-blue-text">{{code.value}}</span>&amp;</span>
+                <span class="code-line">client_id=<span v-bind:class="{ 'orange-text': !savedClientId, 'light-blue-text': savedClientId }">{{savedClientId || '{clientId}'}}</span>&amp;</span>
+                <span class="code-line">client_secret=<span class="orange-text">{clientSecret}</span>&amp;</span>
+                <span class="code-line">redirect_uri=<span v-bind:class="{ 'orange-text': !savedRedirectUri, 'light-blue-text': savedRedirectUri }">{{encodeURIComponent(savedRedirectUri) || '{redirectUri}'}}</span></span>
+            </span>
+        </code-card>
     </div>
 
     <div class="debug__callback-info">
         <h3 class="h5-responsive">{{method | upper}} request details</h3>
 
-        <div v-show="formBody.length > 0">
-            <div title="Form body values" class="code-block">
-                <p class="card-text white-text">
-                    <template v-for="param in formBody">
-                        <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
-                    </template>
-                </p>
-            </div>
-        </div>
+        <code-card title="Form body values" v-show="formBody.length > 0">
+            <template v-for="param in formBody">
+                <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
+            </template>
+        </code-card>
 
-        <div v-show="query.length > 0">
-            <div title="?query values" class="code-block">
-                <p class="card-text white-text">
-                    <template v-for="param in query">
-                        <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
-                    </template>
-                </p>
-                <copy-button class="bottom-right" v-bind:value="rawQuery"></copy-button>
-            </div>
-        </div>
+        <code-card title="?query values"
+                   v-show="query.length > 0"
+                   v-bind:value="rawQuery">
+            <template v-for="param in query">
+                <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
+            </template>
+        </code-card>
 
-        <div v-show="fragment.length > 0">
-            <div title="#fragment values" class="code-block">
-                <p class="card-text white-text">
-                    <template v-for="param in fragment">
-                        <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
-                    </template>
-                </p>
-                <copy-button class="bottom-right" v-bind:value="rawFragment"></copy-button>
-            </div>
-        </div>
+        <code-card title="#fragment values"
+                   v-show="fragment.length > 0"
+                   v-bind:value="rawFragment">
+            <template v-for="param in fragment">
+                <span class="code-line">{{param.name}}=<span class="light-blue-text">{{param.value}}</span></span>
+            </template>
+        </code-card>
     </div>
 </div>
 
