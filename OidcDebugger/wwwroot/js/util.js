@@ -24,5 +24,5 @@ function querystringAsDictionary(qs) {
 
 // Unescapes a limited number of known HTML entity codes
 function safeUnescape(s) {
-    return s.replace('&#x27;', "'");
+    return s.replace(new RegExp('&#x27;', 'g'), "'");
 }
