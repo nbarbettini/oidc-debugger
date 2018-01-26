@@ -36,7 +36,7 @@ Vue.component('requestUriCode', {
 
 <script type="text/x-template" id="info-card-template">
   <div class="debug__content"> 
-    <div class="card wider">
+    <div class="card">
       <div class="card-header">
         <h5>
           <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -53,10 +53,12 @@ Vue.component('requestUriCode', {
 </script>
 <script>
   Vue.component('infoCard', {
-    props: ['title', 'text'],
+    props: ['title'],
     template: '#info-card-template'
   });
 </script>
+
+<!-- codeCard -->
 
 <script type="text/x-template" id="code-card-template">
   <div class="card card-body code-block">

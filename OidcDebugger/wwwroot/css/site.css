@@ -115,13 +115,6 @@
   top: 0;
 }
 
-.wider {
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .fa-info-circle {
   margin-right: 0.3em;
   color: rgba(255,255,255, 0.6)
@@ -129,30 +122,21 @@
 
 .card-header {
   padding: 1em 1.5em 0.5em;
-  width: 105%;
   color: white;
-  background: linear-gradient(135deg, #ef6c00, #ffa000 60%, #fff176);
-  box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 4px;
+  border-radius: 0 !important;
+  border-width: 0;
+  background-color: #888;
   z-index: 2;
 }
 
 .card-body {
-  padding: 1.8rem 0;
+  padding: 1.8rem 0 0.8rem 0;
   margin: 0 1em;
 }
 
 .card-text {
   font-size: .9rem;
   color: #747373;
-}
-
-.card-alternate .card-header {
-  background: linear-gradient(135deg, #1565c0, #0097a7 60%, #80deea);
-}
-
-.card-alternate {
-
 }
 
 .debug__callback {
