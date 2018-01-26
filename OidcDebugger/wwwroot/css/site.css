@@ -120,6 +120,10 @@
   color: rgba(255,255,255, 0.6)
 }
 
+.card {
+  margin-bottom: 1.8rem;
+}
+
 .card-header {
   padding: 1em 1.5em 0.5em;
   color: white;

@@ -122,7 +122,31 @@
                 }
             </div>
         </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-7">
+        <info-card v-show="flow === 'code'" title="Authorization code flow">
+          <p>The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.
+          This flow should be used when the application code runs on a secure server (common for MVC and server-rendered pages apps).</p>
+        </info-card>
+
+        <info-card v-show="flow === 'implicit'" title="Implicit flow">
+          <p>The authorization server will return an access and/or ID token directly back to the client.
+             This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications that need to directly receive tokens.
+          </p>
+        </info-card>
+
+        <info-card v-show="flow === 'hybrid'" title="Hybrid flow">
+          <p>The authorization server will respond with both a <code>code</code> (which the client can exchange for tokens on a secure channel) and a token.
+             A common use case for the hybrid flow is using the <code>code</code> to get an access token on the server, and directly consuming an ID token on the client.</p>
+        </info-card>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-7">
         <div class="md-form">
             <label for="responseMode" class="form-group-label">
                 Response mode <span class="required-text">(required)</span>
@@ -156,23 +180,6 @@
                 <i class="fa fa-paper-plane-o ml-1"></i>
             </a>
         </div>
-      </div>
-      <div class="col-5">
-        <info-card v-show="flow === 'code'" title="Authorization Code flow" class="card-alternate">
-          <p>The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.</p>
-          <p>This flow should be used when the application code runs on a secure server (common for MVC and server-rendered pages apps).</p>
-        </info-card>
-
-        <info-card v-show="flow === 'implicit'" title="Implicit flow" class="card-alternate">
-          <p>The authorization server will return an access and/or ID token directly back to the client.</p>
-          <p>This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications that need to directly receive tokens.</p>
-        </info-card>
-
-        <info-card v-show="flow === 'hybrid'" title="Hybrid flow" class="card-alternate">
-          <p>The authorization server will respond with both a <code>code</code> (which the client can exchange for tokens on a secure channel) and a token.</p>
-          <p>A common use case for the hybrid flow is using the <code>code</code> to get an access token on the server, and directly consuming an ID token on the client.</p>
-        </info-card>
-
       </div>
     </div>
   </form>
