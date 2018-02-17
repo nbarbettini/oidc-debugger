@@ -12,7 +12,7 @@ Getting an OAuth or OpenID Connect flow working properly can be tricky. There's 
 
 All you need to do is temporarily set your OAuth client redirect URI to `https://oidcdebugger.com/debug` (or `https://oauthdebugger.com/debug`):
 
-![Screenshot of Google developer console](https://www.recaffeinate.co/img/post/introducing-openid-connect-debugger/temp-redirect-uri.png "Temporarily change client redirect URI to debugger" | width=550)
+<img src="https://www.recaffeinate.co/img/post/introducing-openid-connect-debugger/temp-redirect-uri.png" alt="Temporarily change client redirect URI to debugger" title="Screenshot of Google developer console" width="550px" align="center">
 
 Then, build a request to your authorization server using the debugger, and fire it off:
 
