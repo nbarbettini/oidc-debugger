@@ -4,7 +4,7 @@
         authorizeUri: getHint('authorize_uri_hint')[0] || fromLocalStorage('odebugger:authorizeUri') || '',
         redirectUri: getHint('redirect_uri_hint')[0] || defaultRedirectUri(),
         clientId: getHint('client_id_hint')[0] || fromLocalStorage('odebugger:clientId') || '',
-        scopes: getHint('scope_hint')[0] || defaultScopes(),
+        scopes: getHint('scope_hint')[0] || fromLocalStorage('odebugger:scopes') || defaultScopes(),
         responseTypesArray: loadResponseTypes() || ['code'],
         responseMode: getHint('response_mode_hint')[0] || fromLocalStorage('odebugger:responseMode') || 'form_post',
         state: getHint('state_hint')[0] || '',
@@ -74,6 +74,7 @@
             window.localStorage.setItem('odebugger:authorizeUri', this.authorizeUri);
             window.sessionStorage.setItem('odebugger:expectedState', this.state);
             window.localStorage.setItem('odebugger:clientId', this.clientId);
+            window.localStorage.setItem('odebugger:scopes', this.scopes);
             window.localStorage.setItem('odebugger:responseType', this.responseType);
             window.localStorage.setItem('odebugger:responseMode', this.responseMode);
             window.sessionStorage.setItem('odebugger:redirectUri', this.redirectUri);
