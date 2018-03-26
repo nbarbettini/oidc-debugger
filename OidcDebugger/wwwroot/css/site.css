@@ -67,18 +67,6 @@
   border-radius: 4px;
 }
 
-
-.debug__custom-param {
-  display: flex;
-  align-items: center;
-  color: #757575;
-}
-
-.debug__custom-param i {
-  transform: scale(1.5);
-  padding: 0 0 0.3em 0.3em;
-}
-
 .debug__footer {
   background-color: #eee;
   display: flex;
