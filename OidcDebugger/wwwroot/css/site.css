@@ -12,17 +12,17 @@
 }
 
 .debug__header.header-oauth {
-  background: 
+  background:
   linear-gradient(
-    rgba(1, 87, 155, 0.95), 
+    rgba(1, 87, 155, 0.95),
     rgba(1, 87, 155, 0.75)
   );
 }
 
 .debug__header.header-oidc {
-  background: 
+  background:
   linear-gradient(
-    rgba(247, 140, 64, 0.95), 
+    rgba(247, 140, 64, 0.95),
     rgba(247, 140, 64, 0.75)
   );
 }
@@ -65,6 +65,18 @@
 .debug__form-submit--button {
   width: 50%;
   border-radius: 4px;
+}
+
+
+.debug__custom-param {
+  display: flex;
+  align-items: center;
+  color: #757575;
+}
+
+.debug__custom-param i {
+  transform: scale(1.5);
+  padding: 0 0 0.3em 0.3em;
 }
 
 .debug__footer {

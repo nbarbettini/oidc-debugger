@@ -97,17 +97,26 @@
     </div>
 
     <div class="row">
-      <span class="row">
-        Add Custom Inputs <i class="fa fa-plus"></i>
-      </span>
-      <div class="debug__custom-param row">
-        <div class="md-form form-group col">
-          <label for="custom-1-key">Key</label>
-          <input type="text" id="custom-1-key"></input>
-        </div>
-        <div class="md-form form-group col">
-          <label for="custom-1-value">Value</label>
-          <input type="text" id="custom-1-value"></input>
+      <div class="col-7">
+        <p class="text-right deep-orange-text">
+          <small class="font-weight-bold">
+            Add Custom Parameters <i class="fa fa-plus"></i>
+          </small>
+        </p>
+        <div class="row debug__custom-param">
+          <div class="col">
+            <div class="md-form">
+              <label for="custom-1-key">Key</label>
+              <input type="text" id="custom-1-key"></input>
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <label for="custom-1-value">Value</label>
+              <input type="text" id="custom-1-value"></input>
+            </div>
+          </div>
+          <i class="fa fa-close"></i>
         </div>
       </div>
     </div>
@@ -132,9 +141,9 @@
             @if (Tenant.Shortname == "oidc")
             {
             <div class="form-group">
-                <input type="checkbox" id="responseType-id_token" value="id_token"
-                       v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
-                <label for="responseType-id_token" class="select-label">id_token</label>
+              <input type="checkbox" id="responseType-id_token" value="id_token"
+                     v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
+              <label for="responseType-id_token" class="select-label">id_token</label>
             </div>
             }
           </div>
