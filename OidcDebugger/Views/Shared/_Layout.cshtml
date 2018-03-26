@@ -26,19 +26,9 @@
       <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-      <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+      <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
-    <environment names="Development">
-      <script src="https://unpkg.com/vue@2.4.2/dist/vue.js"></script>
-        <script src="https://unpkg.com/vue-clipboard2@0.0.8/dist/vue-clipboard.js"></script>
-      <script src="~/js/site.js"></script>
-      <script src="~/js/util.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-      <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
-      <script src="https://unpkg.com/vue-clipboard2@0.0.8/dist/vue-clipboard.min.js"></script>
-      <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+    
     <environment names="Staging,Production">
       <script async src="https://www.googletagmanager.com/gtag/js?id=@Tenant.GoogleTrackingId"></script>
       <script>
@@ -76,16 +66,12 @@
       </div>
     </header>
 
-    @Html.Partial("_Components.cshtml")
-
     <div>
-
       @RenderBody()
 
       <footer class="debug__footer">
-        <span>&copy; 2017 <a href="https://www.recaffeinate.co">Nate Barbettini</a></span>
+        <span>&copy; 2018 <a href="https://www.recaffeinate.co">Nate Barbettini</a></span>
       </footer>
-
     </div>    
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
