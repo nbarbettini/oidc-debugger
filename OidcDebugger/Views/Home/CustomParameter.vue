@@ -18,7 +18,8 @@
                v-on:input="update()"></input>
       </div>
     </div>
-    <i class="fa fa-close fa-lg grey-text" v-on:remove="customParameters.splice(index, 1)"></i>
+    <i class="fa fa-close fa-lg grey-text"
+       v-on:remove="customParameters.splice(index, 1)"></i>
   </div>
 </template>
 

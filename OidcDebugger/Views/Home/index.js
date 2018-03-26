@@ -84,7 +84,6 @@ new Vue({
         this.selected = event.target.id;
     },
     addCustomParam: function() {
-        console.log('clicked custom param', this.customParameters);
         this.customParameters.push({
             key: this.customKey,
             value: this.customValue
