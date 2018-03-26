@@ -13,4 +13,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
+
+  <Target Name="TestTarget" AfterTargets="Build">
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm run build" />
+  </Target>
 </Project>
