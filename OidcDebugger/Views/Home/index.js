@@ -2,10 +2,12 @@ import Vue from 'vue';
 import InfoCard from '../Shared/InfoCard.vue';
 import CopyButton from '../Shared/CopyButton.vue';
 import RequestUriCodeCard from './RequestUriCodeCard.vue';
+import CustomParameter from './CustomParameter.vue';
 
 Vue.component('info-card', InfoCard);
 Vue.component('copy-button', CopyButton);
 Vue.component('request-uri-code', RequestUriCodeCard);
+Vue.component('custom-parameter', CustomParameter);
 
 
 new Vue({
@@ -19,6 +21,7 @@ new Vue({
     responseMode: getHint('response_mode_hint')[0] || fromLocalStorage('odebugger:responseMode') || 'form_post',
     state: getHint('state_hint')[0] || '',
     nonce: randomness(),
+    customParameters: [],
     selected: ''
   },
   computed: {
@@ -33,7 +36,7 @@ new Vue({
     },
     generatedUriObject: function() {
         var authorizeUri = removeTrailingSlash(this.authorizeUri) || '';
-        
+
         if (!authorizeUri.length) {
             return {};
         }
@@ -79,6 +82,13 @@ new Vue({
   methods: {
     showInfo: function(event) {
         this.selected = event.target.id;
+    },
+    addCustomParam: function() {
+        console.log('clicked custom param', this.customParameters);
+        this.customParameters.push({
+            key: this.customKey,
+            value: this.customValue
+        });
     },
     saveParameters: function() {
         window.localStorage.setItem('odebugger:authorizeUri', this.authorizeUri);

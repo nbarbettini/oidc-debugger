@@ -5,7 +5,6 @@
 }
 
 <div id="home-view">
-
   <div class="container debug__body" id="form-component">
     <form class="debug__form">
       <div class="row">
@@ -107,23 +106,13 @@
     <div class="row">
       <div class="col-7">
 
-        <div class="row d-flex align-items-center">
-          <div class="col">
-            <div class="md-form">
-              <label for="custom-1-key">Key</label>
-              <input type="text" id="custom-1-key"></input>
-            </div>
-          </div>
-          <div class="col">
-            <div class="md-form">
-              <label for="custom-1-value">Value</label>
-              <input type="text" id="custom-1-value"></input>
-            </div>
-          </div>
-          <i class="fa fa-close fa-lg grey-text"></i>
-        </div>
+        <custom-parameter
+          v-for="(param, index) in customParameters"
+          v-model="customParameters[index]"
+          :key="index">
+        </custom-parameter>
 
-        <p class="text-right deep-orange-text">
+        <p class="text-right deep-orange-text" v-on:click="addCustomParam">
           <small class="font-weight-bold">
             Add Custom Parameters <i class="fa fa-plus"></i>
           </small>
@@ -235,6 +224,7 @@
     </div>
 
   </form>
+  </div>
 </div>
 
 <environment names="Development">
