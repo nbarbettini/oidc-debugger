@@ -7,7 +7,11 @@
 </template>
 
 <script>
-  export default {
-    props: ['value']
-  }
+import Vue from 'vue'
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard)
+
+export default {
+  props: ['value']
+}
 </script>
