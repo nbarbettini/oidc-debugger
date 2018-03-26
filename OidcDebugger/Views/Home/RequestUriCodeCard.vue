@@ -20,12 +20,12 @@
 </template>
 
 <script>
-  export default {
-    props: ['uriObject'],
-    computed: {
-      hasAuthorizeUri: function() {
-        return this.uriObject && this.uriObject.authorizeUri;
-      }
+export default {
+  props: ['uriObject'],
+  computed: {
+    hasAuthorizeUri: function() {
+      return this.uriObject && this.uriObject.authorizeUri;
     }
   }
+}
 </script>
