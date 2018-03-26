@@ -1,0 +1,30 @@
+{
+  "name": "oidc-debugger",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/nbarbettini/oidc-debugger.git"
+  },
+  "dependencies": {
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "aspnet-webpack": "^2.0.3",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-vue-app": "^2.0.0",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-hot-middleware": "^2.21.2"
+  }
+}
