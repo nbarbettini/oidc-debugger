@@ -85,6 +85,7 @@ new Vue({
     },
     addCustomParam: function() {
         this.customParameters.push({
+            id: this.customParameters.length,
             key: this.customKey,
             value: this.customValue
         });

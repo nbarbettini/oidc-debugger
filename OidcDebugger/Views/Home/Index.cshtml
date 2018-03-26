@@ -109,7 +109,8 @@
         <custom-parameter
           v-for="(param, index) in customParameters"
           v-model="customParameters[index]"
-          :key="index">
+          :key="param.id"
+          v-on:remove="customParameters.splice(index, 1)">
         </custom-parameter>
 
         <p class="text-right deep-orange-text" v-on:click="addCustomParam">

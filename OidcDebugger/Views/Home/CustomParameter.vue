@@ -18,8 +18,7 @@
                v-on:input="update()"></input>
       </div>
     </div>
-    <i class="fa fa-close fa-lg grey-text"
-       v-on:remove="customParameters.splice(index, 1)"></i>
+    <i class="fa fa-close fa-lg grey-text" v-on:click="remove()"></i>
   </div>
 </template>
 
@@ -34,7 +33,10 @@
     },
     methods: {
       update: function() {
-        this.$emit('input', { key: this.key, value: this.val})
+        this.$emit('input', { id: this.value.id, key: this.key, value: this.val})
+      },
+      remove: function() {
+        this.$emit('remove')
       }
     }
   }
