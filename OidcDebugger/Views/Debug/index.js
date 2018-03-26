@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import CodeCard from '../Shared/CodeCard.vue';
 import CopyButton from '../Shared/CopyButton.vue';
+import utils from '../Shared/utils.js';
 
 Vue.component('code-card', CodeCard);
 Vue.component('copy-button', CopyButton);
@@ -60,7 +61,7 @@ new Vue({
       }
   },
   methods: {
-      safeUnescape,
+      safeUnescape: utils.safeUnescape,
       decodeUri: function(s) {
           s = s || '';
           return decodeURIComponent(s.replace(/\+/g, '%20'));

@@ -1,12 +1,12 @@
 import Vue from 'vue';
+import RequestUriCodeCard from './RequestUriCodeCard.vue';
 import InfoCard from '../Shared/InfoCard.vue';
 import CopyButton from '../Shared/CopyButton.vue';
-import RequestUriCodeCard from './RequestUriCodeCard.vue';
+import utils from '../Shared/utils.js';
 
 Vue.component('info-card', InfoCard);
 Vue.component('copy-button', CopyButton);
 Vue.component('request-uri-code', RequestUriCodeCard);
-
 
 new Vue({
   el: '#home-view',
@@ -18,7 +18,7 @@ new Vue({
     responseTypesArray: loadResponseTypes() || ['code'],
     responseMode: getHint('response_mode_hint')[0] || fromLocalStorage('odebugger:responseMode') || 'form_post',
     state: getHint('state_hint')[0] || '',
-    nonce: randomness(),
+    nonce: utils.randomness(),
     selected: ''
   },
   computed: {
@@ -32,7 +32,7 @@ new Vue({
         if (hasCode && (hasToken || hasIdToken)) return 'hybrid';
     },
     generatedUriObject: function() {
-        var authorizeUri = removeTrailingSlash(this.authorizeUri) || '';
+        var authorizeUri = utils.removeTrailingSlash(this.authorizeUri) || '';
         
         if (!authorizeUri.length) {
             return {};
@@ -97,7 +97,7 @@ new Vue({
 
 function getHint(key) {
   if (!key) return;
-  return querystringAsDictionary(window.location.search)[key] || [];
+  return utils.querystringAsDictionary(window.location.search)[key] || [];
 }
 
 function fromLocalStorage(key) {
