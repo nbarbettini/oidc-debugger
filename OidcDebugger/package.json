@@ -1,8 +1,10 @@
 {
   "name": "oidc-debugger",
+  "description": "OAuth 2.0 and OpenID Connect debugging tool",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "clean": "",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
