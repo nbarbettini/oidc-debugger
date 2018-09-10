@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <Target Name="TestTarget" AfterTargets="Build">
-    <Exec Condition="$(Configuration) == 'Release'" Command="npm install" />
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm install --no-audit" />
     <Exec Condition="$(Configuration) == 'Release'" Command="npm run build" />
   </Target>
 </Project>
