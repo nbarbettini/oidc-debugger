@@ -160,6 +160,7 @@
     margin: 1em 0;
     word-wrap: break-word;
     line-height: 24px;
+    padding-bottom: 37px;
 }
 
 .code-block[title] {
@@ -206,8 +207,18 @@
   margin-left: 20px;
 }
 
+.code-block pre {
+    color: inherit
+}
+
 .bottom-right {
     position: absolute;
     right: 3px;
+    bottom: 3px;
+}
+
+.bottom-left {
+    position: absolute;
+    left: 3px;
     bottom: 3px;
 }

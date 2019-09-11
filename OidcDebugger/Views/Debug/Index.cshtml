@@ -53,17 +53,17 @@
               {{code.value}}
           </code-card>
 
-          <code-card title="Access token" class="success"
+          <token-card title="Access token" class="success"
                     v-show="accessToken.exists"
                     v-bind:value="accessToken.value">
               {{accessToken.value}}
-          </code-card>
+          </token-card>
 
-          <code-card title="ID token" class="success"
+          <token-card title="ID token" class="success"
                     v-show="idToken.exists"
                     v-bind:value="idToken.value">
               {{idToken.value}}
-          </code-card>
+          </token-card>
       </div>
 
       <div class="debug__callback-header" v-if="!success">
