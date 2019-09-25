@@ -206,6 +206,10 @@
   margin-left: 20px;
 }
 
+.code-block pre {
+    color: inherit
+}
+
 .bottom-right {
     position: absolute;
     right: 3px;

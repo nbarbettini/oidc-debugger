@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import CodeCard from '../Shared/CodeCard.vue';
 import CopyButton from '../Shared/CopyButton.vue';
+import DecodedTokenCard from '../Shared/DecodedTokenCard.vue';
 import utils from '../Shared/utils.js';
 
 Vue.component('code-card', CodeCard);
 Vue.component('copy-button', CopyButton);
+Vue.component('decoded-token-card', DecodedTokenCard);
 
 new Vue({
   el: "#debug-view",

@@ -59,11 +59,25 @@
               {{accessToken.value}}
           </code-card>
 
+          <decoded-token-card title="Access token (decoded)"
+                         class="success"
+                         v-show="accessToken.exists"
+                         v-bind:value="accessToken.value">
+              {{accessToken.value}}
+          </decoded-token-card>
+
           <code-card title="ID token" class="success"
                     v-show="idToken.exists"
                     v-bind:value="idToken.value">
               {{idToken.value}}
           </code-card>
+
+          <decoded-token-card title="ID token (decoded)"
+                         class="success"
+                         v-show="idToken.exists"
+                         v-bind:value="idToken.value">
+              {{idToken.value}}
+          </decoded-token-card>
       </div>
 
       <div class="debug__callback-header" v-if="!success">
