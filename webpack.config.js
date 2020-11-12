@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var fs = require('fs')
 
-var appBasePath = './Views/'
+var appBasePath = './OidcDebugger/Views/'
 
 var jsEntries = {}
 // We search for index.js files inside basePath folder and make those as entries
@@ -16,8 +16,8 @@ fs.readdirSync(appBasePath).forEach(function (name) {
 module.exports = {
     entry: jsEntries,
     output: {
-        path: path.resolve(__dirname, './wwwroot/bundle/'),
-        publicPath: '/wwwroot/bundle/',
+        path: path.resolve(__dirname, './OidcDebugger/wwwroot/bundle/'),
+        publicPath: '/OidcDebugger/wwwroot/bundle/',
         filename: '[name].js'
     },
     resolve: {
