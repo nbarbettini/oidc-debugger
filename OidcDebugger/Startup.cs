@@ -12,12 +12,15 @@ namespace OidcDebugger
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            Logger = logger;
         }
 
         public IConfiguration Configuration { get; }
+
+        public ILogger<Startup> Logger {get;}
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
@@ -37,7 +40,8 @@ namespace OidcDebugger
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-                options.KnownNetworks.Add(new IPNetwork(IPAddress.Parse("::ffff:10.0.0.0"), 104)); // 10.0.0.0/8
+                options.KnownNetworks.Clear();
+                options.KnownProxies.Clear();
             });
         }
 
@@ -53,7 +57,27 @@ namespace OidcDebugger
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseForwardedHeaders();
-            
+
+            app.Use(async (context, next) =>
+            {
+                // Request method, scheme, and path
+                Logger.LogDebug("Request Method: {Method}", context.Request.Method);
+                Logger.LogDebug("Request Scheme: {Scheme}", context.Request.Scheme);
+                Logger.LogDebug("Request Path: {Path}", context.Request.Path);
+
+                // Headers
+                foreach (var header in context.Request.Headers)
+                {
+                    Logger.LogDebug("Header: {Key}: {Value}", header.Key, header.Value);
+                }
+
+                // Connection: RemoteIp
+                Logger.LogDebug("Request RemoteIp: {RemoteIpAddress}", 
+                    context.Connection.RemoteIpAddress);
+
+                await next();
+            });
+
             app.UseReferrerPolicy(opts => opts.NoReferrerWhenDowngrade());
 
             if (env.IsDevelopment())
