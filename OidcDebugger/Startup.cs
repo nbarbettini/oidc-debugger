@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
 
 namespace OidcDebugger
 {
@@ -31,6 +33,12 @@ namespace OidcDebugger
             {
                 options.Filters.Add(new RequireHttpsAttribute());
             });
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.KnownNetworks.Add(new IPNetwork(IPAddress.Parse("::ffff:10.0.0.0"), 104)); // 10.0.0.0/8
+            });
         }
 
         private void ConfigureCommonServices(IServiceCollection services)
@@ -44,6 +52,8 @@ namespace OidcDebugger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseForwardedHeaders();
+            
             app.UseReferrerPolicy(opts => opts.NoReferrerWhenDowngrade());
 
             if (env.IsDevelopment())
