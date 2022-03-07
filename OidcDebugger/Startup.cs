@@ -67,7 +67,6 @@ namespace OidcDebugger
 
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
-                    ProjectPath = Path.Combine(env.ContentRootPath, @".."),
                     HotModuleReplacement = true,
                 });
             }
