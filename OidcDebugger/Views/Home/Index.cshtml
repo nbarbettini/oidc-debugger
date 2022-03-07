@@ -134,37 +134,42 @@
                                 PKCE Method
                             </label>
 
-                            <div class="md-form">
-                                <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-sha256" name="pkce-method" value="S256" />
-                                <label for="pkce-sha256" class="select-label">SHA-256</label>
+                            <div class="form-group-inline">
+                                <div class="form-group">
+                                    <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-sha256" name="pkce-method" value="S256" />
+                                    <label for="pkce-sha256" class="select-label">SHA-256</label>
 
-                            </div>
-                            <div class="md-form">
-                                <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-plain" name="pkce-method" value="plain" />
-                                <label for="pkce-plain" class="select-label">plain</label>
+                                </div>
+                                <div class="form-group">
+                                    <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-plain" name="pkce-method" value="plain" />
+                                    <label for="pkce-plain" class="select-label">plain</label>
 
+                                </div>
+                                <div class="form-group">
+                                    <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-disabled" name="pkce-method" value="disabled" />
+                                    <label for="pkce-disabled" class="select-label">disabled</label>
+                                </div>
                             </div>
-                            <div class="md-form">
-                                <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-disabled" name="pkce-method" value="disabled" />
-                                <label for="pkce-disabled" class="select-label">disabled</label>
-                            </div>
+                            <div class="row pt-2">
+                                <div class="col-7">
+                                    <div class="md-form">
+                                        <label for="pkce-code-verifier">Code Verifier</label>
+                                        <input v-on:focus="showInfo" v-on:input="saveParameters" v-model="pkceCodeVerifier" type="text" id="pkce-code-verifier" name="pkce-code-verifier" />
+                                    </div>
 
-                            <div class="md-form">
-                                <label for="pkce-code-verifier">Code Verifier</label>
-                                <input v-on:focus="showInfo" v-on:input="saveParameters" v-model="pkceCodeVerifier" type="text" id="pkce-code-verifier" name="pkce-code-verifier" />
-                            </div>
+                                    <div class="md-form">
+                                        <label for="pkce-code-challenge">Code Challenge</label>
+                                        <input disabled v-model="pkceCodeChallenge" type="text" id="pkce-code-challenge" name="pkce-code-challenge" />
+                                    </div>
 
-                            <div class="md-form">
-                                <label for="pkce-code-challenge">Code Challenge</label>
-                                <input disabled v-model="pkceCodeChallenge" type="text" id="pkce-code-challenge" name="pkce-code-challenge" />
-                            </div>
-
-                            <div class="md-form">
-                                <label for="tokenUri">
-                                    Token URI <span class="required-text">(required for PKCE)</span>
-                                </label>
-                                <input type="text" id="tokenUri" class="form-control"
-                                       v-model="tokenUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                                    <div class="md-form">
+                                        <label for="tokenUri">
+                                            Token URI <span class="required-text">(required for PKCE)</span>
+                                        </label>
+                                        <input type="text" id="tokenUri" class="form-control"
+                                               v-model="tokenUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
