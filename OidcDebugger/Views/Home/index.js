@@ -23,7 +23,8 @@ new Vue({
         selected: '',
         pkceMethod: getHint('pkce_method_hint')[0] || fromLocalStorage('odebugger:pkceMethod') || 'S256',
         pkceCodeVerifier: utils.randomString(43),
-        pkceCodeChallenge: ''
+        pkceCodeChallenge: '',
+        usePkce: (getHint('use_pkce')[0] === 'true') || (fromLocalStorage('odebugger:usePkce') === 'true') || false,
     },
     computed: {
         flow: function () {
@@ -69,8 +70,8 @@ new Vue({
                 && this.scopes.trim().length > 0
                 && this.responseType.trim().length > 0
                 && this.responseMode.trim().length > 0
-                && !this.pkceMethod || this.pkceMethod == 'disabled' || this.pkceCodeVerifier.trim().length > 0
-                && !this.pkceMethod || this.pkceMethod == 'disabled' || this.tokenUri.trim().length > 0
+                && !this.pkceMethod || !this.usePkce || this.pkceCodeVerifier.trim().length > 0
+                && !this.pkceMethod || !this.usePkce || this.tokenUri.trim().length > 0
 
             if (result.valid) {
                 var encoded = result.authorizeUri + '?';
@@ -92,7 +93,6 @@ new Vue({
             this.selected = event.target.id;
         },
         saveParameters: function () {
-
             if (!this.tokenUri) {
                 this.tokenUri = this.authorizeUri.replace('/authorize', '/token');
             }
@@ -107,6 +107,7 @@ new Vue({
             window.localStorage.setItem('odebugger:responseMode', this.responseMode);
             window.sessionStorage.setItem('odebugger:redirectUri', this.redirectUri);
             window.localStorage.setItem('odebugger:pkceMethod', this.pkceMethod);
+            window.localStorage.setItem('odebugger:usePkce', this.usePkce);
             window.sessionStorage.setItem('odebugger:pkceCodeVerifier', this.pkceCodeVerifier);
 
             utils.hash(this.pkceMethod, this.pkceCodeVerifier).then(hashed => {

@@ -129,12 +129,14 @@
                             }
                         </div>
 
-                        <div v-show="responseTypesArray.indexOf('code') > -1">
-                            <label for="pkceMethod" class="form-group-label">
-                                PKCE Method
-                            </label>
+                        <div class="pt-2" v-show="responseTypesArray.indexOf('code') > -1">
+                           
+                            <div class="form-group">
+                                <input type="checkbox" id="use-pkce" v-model="usePkce" v-on:focus="showInfo" v-on:change="saveParameters">
+                                <label for="use-pkce" class="select-label">Use PKCE?</label>
+                            </div>
 
-                            <div class="form-group-inline">
+                            <div class="form-group-inline" v-show="usePkce">
                                 <div class="form-group">
                                     <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-sha256" name="pkce-method" value="S256" />
                                     <label for="pkce-sha256" class="select-label">SHA-256</label>
@@ -145,13 +147,9 @@
                                     <label for="pkce-plain" class="select-label">plain</label>
 
                                 </div>
-                                <div class="form-group">
-                                    <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-disabled" name="pkce-method" value="disabled" />
-                                    <label for="pkce-disabled" class="select-label">disabled</label>
-                                </div>
                             </div>
-                            <div class="row pt-2">
-                                <div class="col-7">
+                            <div class="row pt-2" v-show="usePkce">
+                                <div class="col-12">
                                     <div class="md-form">
                                         <label for="pkce-code-verifier">Code Verifier</label>
                                         <input v-on:focus="showInfo" v-on:input="saveParameters" v-model="pkceCodeVerifier" type="text" id="pkce-code-verifier" name="pkce-code-verifier" />

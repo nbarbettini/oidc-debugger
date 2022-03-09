@@ -30,7 +30,10 @@ new Vue({
         state: function () { return this.findValue('state'); },
         error: function () { return this.findValue('error'); },
         errorDescription: function () { return this.findValue('error_description'); },
-        usePkce: function () { return this.codeChallenge && this.codeChallenge != 'disabled'; },
+
+        usePkce: function () {
+            return (localStorage.getItem('odebugger:usePkce') === 'true') || false;
+        },
 
         clientId: function () {
             return localStorage.getItem('odebugger:clientId') || '';
