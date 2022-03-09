@@ -101,9 +101,9 @@
 
             <div v-if="usePkce">
                 <p>
-                    Now you need to exchange the authorization code for tokens using the token endpoint.
-                    Since you selected to use the PKCE flow we can use the code challenge you created
-                    on the previous page.
+                    Now you need to exchange the authorization code for tokens using the token endpoint. 
+                    Since this flow was started with a PKCE Code Challenge, we can perform the token exchange directly in the 
+                    browser for you.
                 </p>
 
                 <code-card title="PKCE result" class="success"
