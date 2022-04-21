@@ -1,197 +1,249 @@
 ﻿@inject AppTenant Tenant
 
 @{
-  ViewData["Title"] = "Create a request";
+    ViewData["Title"] = "Create a request";
 }
 
 <div id="home-view">
 
-  <div class="container debug__body" id="form-component">
-  <form class="debug__form">
-      <div class="row">
-      <div class="col-7">
-          <div class="md-form">
-              <label for="authorizeUri">
-                  Authorize URI <span class="required-text">(required)</span>
-              </label>
-              <input type="text" id="authorizeUri" class="form-control"
-                  v-model="authorizeUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
-          </div>
+    <div class="container debug__body" id="form-component">
+        <form class="debug__form">
+            <div class="row">
+                <div class="col-7">
+                    <div class="md-form">
+                        <label for="authorizeUri">
+                            Authorize URI <span class="required-text">(required)</span>
+                        </label>
+                        <input type="text" id="authorizeUri" class="form-control"
+                               v-model="authorizeUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                    </div>
 
-          <div class="md-form">
-              <label for="redirectUri">
-                  Redirect URI <span class="required-text">(required)</span>
-              </label>
-              <input type="text" id="redirectUri" class="form-control"
-                  v-model="redirectUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
-          </div>
+                    <div class="md-form">
+                        <label for="redirectUri">
+                            Redirect URI <span class="required-text">(required)</span>
+                        </label>
+                        <input type="text" id="redirectUri" class="form-control"
+                               v-model="redirectUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                    </div>
 
-          <div class="md-form">
-              <label for="clientId">
-                  Client ID <span class="required-text">(required)</span>
-              </label>
-              <input type="text" id="clientId" class="form-control"
-                  v-model="clientId" v-on:focus="showInfo" v-on:input="saveParameters" required/>
-          </div>
+                    <div class="md-form">
+                        <label for="clientId">
+                            Client ID <span class="required-text">(required)</span>
+                        </label>
+                        <input type="text" id="clientId" class="form-control"
+                               v-model="clientId" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                    </div>
 
-          <div class="md-form">
-              <label for="scopes">
-                  Scope <span class="required-text">(required)</span>
-              </label>
-              <input type="text" id="scopes" class="form-control"
-                  v-model="scopes" v-on:focus="showInfo" v-on:input="saveParameters" required />
-          </div>
+                    <div class="md-form">
+                        <label for="scopes">
+                            Scope <span class="required-text">(required)</span>
+                        </label>
+                        <input type="text" id="scopes" class="form-control"
+                               v-model="scopes" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                    </div>
 
-          <div class="md-form">
-              <label for="state">
-                  State
-              </label>
-              <input type="text" id="state" class="form-control"
-                  v-model="state" v-on:focus="showInfo" v-on:input="saveParameters" />
-          </div>
+                    <div class="md-form">
+                        <label for="state">
+                            State
+                        </label>
+                        <input type="text" id="state" class="form-control"
+                               v-model="state" v-on:focus="showInfo" v-on:input="saveParameters" />
+                    </div>
 
-          <div class="md-form">
-              <label for="nonce">
-                  Nonce
-              </label>
-              <input type="text" id="nonce" class="form-control"
-                  v-model="nonce" v-on:focus="showInfo" v-on:input="saveParameters" />
-          </div>
-      </div>
+                    <div class="md-form">
+                        <label for="nonce">
+                            Nonce
+                        </label>
+                        <input type="text" id="nonce" class="form-control"
+                               v-model="nonce" v-on:focus="showInfo" v-on:input="saveParameters" />
+                    </div>
+                </div>
 
-      <div class="col-5">
-          <info-card v-show="selected === 'authorizeUri'" title="Authorize URI">
-          <p>The <b>authorize URI</b> on the authorization server is where an @Tenant.Name flow starts.</p>
-          </info-card>
+                <div class="col-5">
+                    <info-card v-show="selected === 'authorizeUri'" title="Authorize URI">
+                        <p>The <b>authorize URI</b> on the authorization server is where an @Tenant.Name flow starts.</p>
+                    </info-card>
 
-          <info-card v-show="selected === 'redirectUri'" title="Redirect URI">
-          <p>The <b>redirect URI</b> tells the issuer where to redirect the browser back to when the flow is done.</p>
-          </info-card>
+                    <info-card v-show="selected === 'redirectUri'" title="Redirect URI">
+                        <p>The <b>redirect URI</b> tells the issuer where to redirect the browser back to when the flow is done.</p>
+                    </info-card>
 
-          <info-card v-show="selected === 'clientId'" title="Client ID">
-          <p>Every client (website or mobile app) is identified by a <b>client ID</b>.
-          Unlike a client secret, the client ID is a public value that does not have to be protected.</p>
-          </info-card>
+                    <info-card v-show="selected === 'clientId'" title="Client ID">
+                        <p>
+                            Every client (website or mobile app) is identified by a <b>client ID</b>.
+                            Unlike a client secret, the client ID is a public value that does not have to be protected.
+                        </p>
+                    </info-card>
 
-          <info-card v-show="selected === 'scopes'" title="Scope">
-          <p>Clients can request additional information or permissions via <b>scopes</b>.
-          @if (Tenant.Shortname == "oidc")
-          {
-              <text>The <code>openid</code> scope is the only required scope.</text>
-          }
-          </p>
-          @if (Tenant.Shortname == "oidc")
-          {
-              <p>The OpenID Connect spec defines some <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">standard scopes</a>,
-              and applications can define their own custom scopes as well.</p>
-          }
-          </info-card>
+                    <info-card v-show="selected === 'scopes'" title="Scope">
+                        <p>
+                            Clients can request additional information or permissions via <b>scopes</b>.
+                            @if (Tenant.Shortname == "oidc")
+                            {
+                                <text>The <code>openid</code> scope is the only required scope.</text>
+                            }
+                        </p>
+                        @if (Tenant.Shortname == "oidc")
+                        {
+                            <p>
+                                The OpenID Connect spec defines some <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">standard scopes</a>,
+                                and applications can define their own custom scopes as well.
+                            </p>
+                        }
+                    </info-card>
 
-          <info-card v-show="selected === 'state'" title="State">
-          <p>The <b>state</b> is an optional value that is carried through the whole flow and returned to the client.</p>
-          <p>It's common to use state to store an anti-forgery token that can be verified after the login flow is complete. Another common use is storing the location the user should be redirected to after logging in.</p>
-          </info-card>
+                    <info-card v-show="selected === 'state'" title="State">
+                        <p>The <b>state</b> is an optional value that is carried through the whole flow and returned to the client.</p>
+                        <p>It's common to use state to store an anti-forgery token that can be verified after the login flow is complete. Another common use is storing the location the user should be redirected to after logging in.</p>
+                    </info-card>
 
-          <info-card v-show="selected === 'nonce'" title="Nonce">
-          <p>A <b>nonce</b> (or <b>n</b>umber used <b>once</b>) is a random value that is used to prevent <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a>. </p>
-          </info-card>
-      </div>
-      </div>
-      <div class="row">
-      <div class="col-7">
-          <div class="md-form">
-              <label for="responseType" class="form-group-label">
-                  Response type <span class="required-text">(required)</span>
-              </label>
-              <div class="form-group-inline">
-                  <div class="form-group">
-                      <input type="checkbox" id="responseType-code" value="code"
-                          v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
-                      <label for="responseType-code" class="select-label">code</label>
-                  </div>
-                  <div class="form-group">
-                      <input type="checkbox" id="responseType-token" value="token"
-                          v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
-                      <label for="responseType-token" class="select-label">token</label>
-                  </div>
-                  @if (Tenant.Shortname == "oidc")
-                  {
-                  <div class="form-group">
-                      <input type="checkbox" id="responseType-id_token" value="id_token"
-                          v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
-                      <label for="responseType-id_token" class="select-label">id_token</label>
-                  </div>
-                  }
-              </div>
-          </div>
-      </div>
-      </div>
+                    <info-card v-show="selected === 'nonce'" title="Nonce">
+                        <p>A <b>nonce</b> (or <b>n</b>umber used <b>once</b>) is a random value that is used to prevent <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a>. </p>
+                    </info-card>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="md-form">
+                        <label for="responseType" class="form-group-label">
+                            Response type <span class="required-text">(required)</span>
+                        </label>
+                        <div class="form-group-inline">
+                            <div class="form-group">
+                                <input type="checkbox" id="responseType-code" value="code"
+                                       v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
+                                <label for="responseType-code" class="select-label">code</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="responseType-token" value="token"
+                                       v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
+                                <label for="responseType-token" class="select-label">token</label>
+                            </div>
+                            @if (Tenant.Shortname == "oidc")
+                            {
+                                <div class="form-group">
+                                    <input type="checkbox" id="responseType-id_token" value="id_token"
+                                           v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
+                                    <label for="responseType-id_token" class="select-label">id_token</label>
+                                </div>
+                            }
+                        </div>
 
-      <div class="row">
-      <div class="col-7">
-          <info-card v-show="flow === 'code'" title="Authorization code flow">
-          <p>The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.
-          This flow should be used when the application code runs on a secure server (common for MVC and server-rendered pages apps).</p>
-          </info-card>
+                        <div class="pt-2" v-show="responseTypesArray.indexOf('code') > -1">
+                           
+                            <div class="form-group">
+                                <input type="checkbox" id="use-pkce" v-model="usePkce" v-on:focus="showInfo" v-on:change="saveParameters">
+                                <label for="use-pkce" class="select-label">Use PKCE?</label>
+                            </div>
 
-          <info-card v-show="flow === 'implicit'" title="Implicit flow">
-          <p>The authorization server will return an access and/or ID token directly back to the client.
-              This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications that need to directly receive tokens.
-          </p>
-          </info-card>
+                            <div class="form-group-inline" v-show="usePkce">
+                                <div class="form-group">
+                                    <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-sha256" name="pkce-method" value="S256" />
+                                    <label for="pkce-sha256" class="select-label">SHA-256</label>
 
-          <info-card v-show="flow === 'hybrid'" title="Hybrid flow">
-          <p>The authorization server will respond with both a <code>code</code> (which the client can exchange for tokens on a secure channel) and a token.
-              A common use case for the hybrid flow is using the <code>code</code> to get an access token on the server, and directly consuming an ID token on the client.</p>
-          </info-card>
-      </div>
-      </div>
+                                </div>
+                                <div class="form-group">
+                                    <input v-on:change="saveParameters" v-model="pkceMethod" type="radio" id="pkce-plain" name="pkce-method" value="plain" />
+                                    <label for="pkce-plain" class="select-label">plain</label>
 
-      <div class="row">
-      <div class="col-7">
-          <div class="md-form">
-              <label for="responseMode" class="form-group-label">
-                  Response mode <span class="required-text">(required)</span>
-              </label>
-              <div class="form-group-inline">
-                  <div class="form-group">
-                      <input type="radio" id="responseMode-query" value="query"
-                          v-model="responseMode" v-on:focus="showInfo" v-on:click="saveParameters" />
-                      <label for="responseMode-query" class="select-label">query</label>
-                  </div>
-                  <div class="form-group">
-                      <input type="radio" id="responseMode-formPost" value="form_post"
-                          v-model="responseMode" v-on:focus="showInfo" v-on:click="saveParameters" />
-                      <label for="responseMode-formPost" class="select-label">form_post</label>
-                  </div>
-                  <div class="form-group">
-                      <input type="radio" id="responseMode-fragment" value="fragment"
-                          v-model="responseMode" v-on:focus="showInfo" v-on:click="saveParameters" />
-                      <label for="responseMode-fragment" class="select-label">fragment</label>
-                  </div>
-              </div>
-          </div>
+                                </div>
+                            </div>
+                            <div class="row pt-2" v-show="usePkce">
+                                <div class="col-12">
+                                    <div class="md-form">
+                                        <label for="pkce-code-verifier">Code Verifier</label>
+                                        <input v-on:focus="showInfo" v-on:input="saveParameters" v-model="pkceCodeVerifier" type="text" id="pkce-code-verifier" name="pkce-code-verifier" />
+                                    </div>
 
-          <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
+                                    <div class="md-form">
+                                        <label for="pkce-code-challenge">Code Challenge</label>
+                                        <input disabled v-model="pkceCodeChallenge" type="text" id="pkce-code-challenge" name="pkce-code-challenge" />
+                                    </div>
 
-          <div class="debug__form-submit">
-              <a v-bind:href="generatedUriObject.encodedUri"
-              v-bind:class="{ disabled: !generatedUriObject.valid }"
-              class="btn btn-amber debug__form-submit--button">
-                  Send Request
-                  <i class="fa fa-paper-plane-o ml-1"></i>
-              </a>
-          </div>
-      </div>
-      </div>
-  </form>
-  </div>
-  
+                                    <div class="md-form">
+                                        <label for="tokenUri">
+                                            Token URI <span class="required-text">(required for PKCE)</span>
+                                        </label>
+                                        <input type="text" id="tokenUri" class="form-control"
+                                               v-model="tokenUri" v-on:focus="showInfo" v-on:input="saveParameters" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-7">
+                    <info-card v-show="flow === 'code'" title="Authorization code flow">
+                        <p>
+                            The authorization server will respond with a <code>code</code>, which the client can exchange for tokens on a secure channel.
+                            This flow should be used when the application code runs on a secure server (common for MVC and server-rendered pages apps).
+                        </p>
+                    </info-card>
+
+                    <info-card v-show="flow === 'implicit'" title="Implicit flow">
+                        <p>
+                            The authorization server will return an access and/or ID token directly back to the client.
+                            This flow is not as secure as the Authorization Code flow, but supports JavaScript single-page applications that need to directly receive tokens.
+                        </p>
+                    </info-card>
+
+                    <info-card v-show="flow === 'hybrid'" title="Hybrid flow">
+                        <p>
+                            The authorization server will respond with both a <code>code</code> (which the client can exchange for tokens on a secure channel) and an ID token.
+                            A common use case for the hybrid flow is using the <code>code</code> to get an access token on the server, and directly consuming an ID token on the client.
+                        </p>
+                    </info-card>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-7">
+                    <div class="md-form">
+                        <label for="responseMode" class="form-group-label">
+                            Response mode <span class="required-text">(required)</span>
+                        </label>
+                        <div class="form-group-inline">
+                            <div class="form-group">
+                                <input type="radio" id="responseMode-query" value="query"
+                                       v-model="responseMode" v-on:focus="showInfo" v-on:click="saveParameters" />
+                                <label for="responseMode-query" class="select-label">query</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" id="responseMode-formPost" value="form_post"
+                                       v-model="responseMode" v-on:focus="showInfo" v-on:click="saveParameters" />
+                                <label for="responseMode-formPost" class="select-label">form_post</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" id="responseMode-fragment" value="fragment"
+                                       v-model="responseMode" v-on:focus="showInfo" v-on:click="saveParameters" />
+                                <label for="responseMode-fragment" class="select-label">fragment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <request-uri-code v-bind:uri-object="generatedUriObject"></request-uri-code>
+
+                    <div class="debug__form-submit">
+                        <a v-bind:href="generatedUriObject.encodedUri"
+                           v-bind:class="{ disabled: !generatedUriObject.valid }"
+                           class="btn btn-amber debug__form-submit--button">
+                            Send Request
+                            <i class="fa fa-paper-plane-o ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 <environment names="Development">
-  <script src="~/bundle/Home.js"></script>
+    <script src="~/bundle/Home.js"></script>
 </environment>
 <environment names="Staging,Production">
-  <script src="~/bundle/Home.min.js" asp-append-version="true"></script>
+    <script src="~/bundle/Home.min.js" asp-append-version="true"></script>
 </environment>

@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Net;
+using System.IO;
 
 namespace OidcDebugger
 {
