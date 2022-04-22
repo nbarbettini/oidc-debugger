@@ -18,7 +18,7 @@ new Vue({
         scopes: getHint('scope_hint')[0] || fromLocalStorage('odebugger:scopes') || defaultScopes(),
         responseTypesArray: loadResponseTypes() || ['code'],
         responseMode: getHint('response_mode_hint')[0] || fromLocalStorage('odebugger:responseMode') || 'form_post',
-        state: getHint('state_hint')[0] || '',
+        state: getHint('state_hint')[0] || utils.randomness(),
         nonce: utils.randomness(),
         selected: '',
         pkceMethod: getHint('pkce_method_hint')[0] || fromLocalStorage('odebugger:pkceMethod') || 'S256',
