@@ -56,7 +56,7 @@ new Vue({
             result.params.push({ name: 'response_type', hintName: 'response_type_hint', value: this.responseType.trim() });
             result.params.push({ name: 'response_mode', hintName: 'response_mode_hint', value: this.responseMode.trim() });
 
-            if (this.responseTypesArray.indexOf('code') > -1 && this.pkceMethod != 'disabled') {
+            if (this.responseTypesArray.indexOf('code') > -1 && this.usePkce) {
                 result.params.push({ name: 'code_challenge_method', value: this.pkceMethod.trim() });
                 result.params.push({ name: 'code_challenge', value: this.pkceCodeChallenge.trim() });
             }

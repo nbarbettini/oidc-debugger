@@ -25,9 +25,6 @@ export function hash(codeChallengeMethod, plainText) {
     if (codeChallengeMethod == 'plain')
         return Promise.resolve(plainText);
 
-    else if (codeChallengeMethod == 'disabled')
-        return Promise.resolve('disabled');
-
     else {
         var encoder = new TextEncoder();
         var algorithm = getAlgorithm(codeChallengeMethod);
