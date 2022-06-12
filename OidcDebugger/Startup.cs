@@ -35,7 +35,7 @@ namespace OidcDebugger
             // Require HTTPS in production
             services.Configure<MvcOptions>(options =>
             {
-                options.Filters.Add(new RequireHttpsAttribute());
+                //options.Filters.Add(new RequireHttpsAttribute());
             });
 
             services.Configure<ForwardedHeadersOptions>(options =>
@@ -55,9 +55,29 @@ namespace OidcDebugger
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory LoggerFactory)
         {
             app.UseForwardedHeaders();
+
+            app.Use(async (context, next) =>
+            {
+                // Request method, scheme, and path
+                Logger.LogDebug("Request Method: {Method}", context.Request.Method);
+                Logger.LogDebug("Request Scheme: {Scheme}", context.Request.Scheme);
+                Logger.LogDebug("Request Path: {Path}", context.Request.Path);
+
+                // Headers
+                foreach (var header in context.Request.Headers)
+                {
+                    Logger.LogDebug("Header: {Key}: {Value}", header.Key, header.Value);
+                }
+
+                // Connection: RemoteIp
+                Logger.LogDebug("Request RemoteIp: {RemoteIpAddress}", 
+                    context.Connection.RemoteIpAddress);
+
+                await next();
+            });
             
             app.UseReferrerPolicy(opts => opts.NoReferrerWhenDowngrade());
 
