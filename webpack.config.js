@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var fs = require('fs')
 
-var appBasePath = './OidcDebugger/Views/'
+var appBasePath = './OidcDebugger/Pages/'
 
 var jsEntries = {}
 // We search for index.js files inside basePath folder and make those as entries

@@ -1,19 +1,78 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 
-namespace OidcDebugger
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddMultiTenant<TenantInfo>()
+    .WithHostStrategy("__tenant__")
+    .WithConfigurationStore();
+
+// In production, add some additional services
+if (!builder.Environment.IsDevelopment())
 {
-    public class Program
+    // Require HTTPS for all pages by default
+    builder.Services.Configure<MvcOptions>(options =>
     {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
+        options.Filters.Add(new RequireHttpsAttribute());
+    });
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseKestrel(opt => opt.AddServerHeader = false)
-                .UseStartup<Startup>()
-                .Build();
-    }
+    // Configure forwarded headers for Heroku's load balancer
+    builder.Services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+        options.KnownNetworks.Clear();
+        options.KnownProxies.Clear();
+    });
+
+    // Enable response compression
+    builder.Services.AddResponseCompression();
+
+    // Configure strict HSTS 
+    builder.Services.AddHsts(opt =>
+    {
+        opt.MaxAge = TimeSpan.FromDays(365);
+        opt.IncludeSubDomains = true;
+    });
 }
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+
+    app.UseWebpackDevMiddlewareEx(new WebpackDevMiddlewareOptions
+    {
+        HotModuleReplacement = true,
+    });
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+    app.UseResponseCompression();
+}
+
+app.UseForwardedHeaders();
+
+app.UseMultiTenant();
+
+app.UseHttpsRedirection();
+
+app.UseXfo(options => options.SameOrigin());
+app.UseXXssProtection(options => options.EnabledWithBlockMode());
+app.UseXContentTypeOptions();
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();

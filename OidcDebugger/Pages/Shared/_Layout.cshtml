@@ -1,4 +1,4 @@
-﻿@inject AppTenant Tenant;
+﻿@inject IMultiTenantContextAccessor Tenant;
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Tenant.Name debugger</title>
     
-    @Html.Partial("_Favicons")
+    <partial name="_Favicons" />
 
     <meta name="description" content="Test and debug @Tenant.Name requests. This free tool makes it easy to send requests and view responses." />
     <meta property="og:type" content="website" />
@@ -41,19 +41,19 @@
 
     </environment>
     <script>
-      window.tenant = '@Tenant.Shortname';
+      window.tenant = '@Tenant.Id';
     </script>
   </head>
 
   <body>
 
-    <header class="debug__header @(Tenant.Shortname == "oauth" ? "header-oauth" : "header-oidc")">
+    <header class="debug__header @(Tenant.Id == "oauth" ? "header-oauth" : "header-oidc")">
       <div class="debug__header-content">
         <h1>
-          <strong>@Tenant.Name</strong> &lt;debugger/&gt;
+                @Tenant.Name
         </h1>
         <p>
-          Test @Tenant.Name requests and debug responses.
+          Test @Tenant.Noun requests and debug responses.
         </p>
         <span class="debug__author">
           <small>
