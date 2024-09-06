@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+ "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --inline"
   },
   "repository": {
     "type": "git",

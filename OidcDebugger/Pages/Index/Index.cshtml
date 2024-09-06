@@ -1,6 +1,8 @@
-﻿@inject AppTenant Tenant
-
+﻿@page "/"
+@model IndexModel
 @{
+    var tenant = HttpContext.GetMultiTenantContext<AppTenantInfo>().TenantInfo!;
+
     ViewData["Title"] = "Create a request";
 }
 
@@ -61,7 +63,7 @@
 
                 <div class="col-5">
                     <info-card v-show="selected === 'authorizeUri'" title="Authorize URI">
-                        <p>The <b>authorize URI</b> on the authorization server is where an @Tenant.Name flow starts.</p>
+                        <p>The <b>authorize URI</b> on the authorization server is where an @tenant.Noun flow starts.</p>
                     </info-card>
 
                     <info-card v-show="selected === 'redirectUri'" title="Redirect URI">
@@ -78,12 +80,12 @@
                     <info-card v-show="selected === 'scopes'" title="Scope">
                         <p>
                             Clients can request additional information or permissions via <b>scopes</b>.
-                            @if (Tenant.Id == "oidc")
+                            @if (tenant.Id == "oidc")
                             {
                                 <text>The <code>openid</code> scope is the only required scope.</text>
                             }
                         </p>
-                        @if (Tenant.Id == "oidc")
+                        @if (tenant.Id == "oidc")
                         {
                             <p>
                                 The OpenID Connect spec defines some <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims">standard scopes</a>,
@@ -119,7 +121,7 @@
                                        v-model="responseTypesArray" v-on:focus="showInfo" v-on:click="saveParameters" required>
                                 <label for="responseType-token" class="select-label">token</label>
                             </div>
-                            @if (Tenant.Id == "oidc")
+                            @if (tenant.Id == "oidc")
                             {
                                 <div class="form-group">
                                     <input type="checkbox" id="responseType-id_token" value="id_token"
@@ -242,8 +244,8 @@
 </div>
 
 <environment names="Development">
-    <script src="~/bundle/Home.js"></script>
+    <script src="http://localhost:8080/OidcDebugger/wwwroot/bundle/Index.js"></script>
 </environment>
 <environment names="Staging,Production">
-    <script src="~/bundle/Home.min.js" asp-append-version="true"></script>
+    <script src="~/bundle/Index.min.js" asp-append-version="true"></script>
 </environment>

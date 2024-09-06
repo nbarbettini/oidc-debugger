@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
+using OidcDebugger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddMultiTenant<TenantInfo>()
+builder.Services.AddMultiTenant<AppTenantInfo>()
     .WithHostStrategy("__tenant__")
     .WithConfigurationStore();
 
@@ -40,15 +41,10 @@ if (!builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 
-    app.UseWebpackDevMiddlewareEx(new WebpackDevMiddlewareOptions
-    {
-        HotModuleReplacement = true,
-    });
 }
 else
 {
