@@ -13,4 +13,6 @@ public record AppTenantInfo : ITenantInfo
     public string? Name { get; set; }
 
     public string? Noun { get; set; }
+
+    public string? SurveyUrl { get; set; }
 }

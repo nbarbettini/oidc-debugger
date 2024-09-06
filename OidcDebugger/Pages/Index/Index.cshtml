@@ -102,6 +102,13 @@
                     <info-card v-show="selected === 'nonce'" title="Nonce">
                         <p>A <b>nonce</b> (or <b>n</b>umber used <b>once</b>) is a random value that is used to prevent <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a>. </p>
                     </info-card>
+
+                    @if (!string.IsNullOrEmpty(tenant.SurveyUrl))
+                    {
+                        <info-card title="Like @tenant.Name?" class="wiggle">
+                            <p>I'd like to make it better for you! Mind taking a <a id="surveylink" href="@tenant.SurveyUrl">3-minute survey</a>?</p>
+                        </info-card>
+                    }
                 </div>
             </div>
             <div class="row">
