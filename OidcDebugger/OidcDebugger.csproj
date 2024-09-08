@@ -16,8 +16,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
-  <Target Name="TestTarget" AfterTargets="Build">
+  <!--<Target Name="TestTarget" AfterTargets="Build">
     <Exec Condition="$(Configuration) == 'Release'" Command="npm install --no-audit" />
     <Exec Condition="$(Configuration) == 'Release'" Command="npm run build" />
-  </Target>
+  </Target>-->
 </Project>
