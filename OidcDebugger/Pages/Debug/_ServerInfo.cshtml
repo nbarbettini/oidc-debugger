@@ -1,0 +1,16 @@
+<script language="javascript">
+    window.serverInfo = {
+        method: "@Model.Method",
+        referer: "@Model.Referer",
+        formBody: [
+            @for (var i = 0; i < Model.Form.Length; i++)
+            {
+                <text>{ name: '@Model.Form[i].Key', value: '@Model.Form[i].Value' }</text>
+                if (i < Model.Form.Length - 1)
+                {
+                    <text>,</text>
+                }
+            }
+        ]
+    }
+</script>
