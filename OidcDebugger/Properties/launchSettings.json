@@ -18,6 +18,7 @@
     "OidcDebugger": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "http://oidc.local:5000/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

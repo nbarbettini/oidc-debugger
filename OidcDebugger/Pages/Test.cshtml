@@ -1,0 +1,25 @@
+﻿@page
+@model OidcDebugger.Pages.TestModel
+@{
+}
+
+<h3>Request info</h3>
+<dl>
+    <dt>Connection.RemoteIpAddress</dt>
+    <dd>@HttpContext.Connection.RemoteIpAddress</dd>
+    <dt>Connection.LocalIpAddress</dt>
+    <dt>Request.IsHttps</dt>
+    <dd>@HttpContext.Request.IsHttps</dd>
+    <dd>@HttpContext.Connection.LocalIpAddress</dd>
+    <dt>Connection.ClientCertificate.PublicKey.EncodedKeyValue</dt>
+    <dd>@HttpContext.Connection.ClientCertificate?.PublicKey.EncodedKeyValue</dd>
+</dl>
+
+<h3>Request headers</h3>
+<dl>
+    @foreach (var header in HttpContext.Request.Headers)
+    {
+        <dt>@header.Key</dt>
+        <dd>@header.Value</dd>
+    }
+</dl>

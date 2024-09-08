@@ -1,22 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.30" />
-    <PackageReference Include="NWebSec.AspNetCore.Middleware" Version="1.1.0" />
-    <PackageReference Include="SaasKit.Multitenancy" Version="1.1.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
+    <PackageReference Include="NWebSec.AspNetCore.Middleware" Version="3.0.0" />
+	<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="7.0.2" />
   </ItemGroup>
 
-  <Target Name="TestTarget" AfterTargets="Build">
-    <Exec Condition="$(Configuration) == 'Release'" Command="npm install --no-audit" />
-    <Exec Condition="$(Configuration) == 'Release'" Command="npm run build" />
-  </Target>
+  <ItemGroup>
+    <Folder Include="Pages\Shared\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
 </Project>

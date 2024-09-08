@@ -1,10 +1,11 @@
-﻿@model OidcDebugger.ViewModels.DebugViewModel
+﻿@page "/debug"
+@model DebugModel
 
 @{
     ViewData["Title"] = "Debug a request";
 }
 
-@Html.Partial("_ServerInfo")
+<partial name="_ServerInfo" />
 
 <div id="debug-view">
     <div class="container debug__callback" id="debug-view-component">
@@ -101,8 +102,8 @@
 
             <div v-if="usePkce">
                 <p>
-                    Now you need to exchange the authorization code for tokens using the token endpoint. 
-                    Since this flow was started with a PKCE Code Challenge, we can perform the token exchange directly in the 
+                    Now you need to exchange the authorization code for tokens using the token endpoint.
+                    Since this flow was started with a PKCE Code Challenge, we can perform the token exchange directly in the
                     browser for you.
                 </p>
 
@@ -176,7 +177,7 @@
 </div>
 
 <environment names="Development">
-    <script src="~/bundle/Debug.js"></script>
+    <script src="http://localhost:8080/OidcDebugger/wwwroot/bundle/Debug.js"></script>
 </environment>
 <environment names="Staging,Production">
     <script src="~/bundle/Debug.min.js" asp-append-version="true"></script>

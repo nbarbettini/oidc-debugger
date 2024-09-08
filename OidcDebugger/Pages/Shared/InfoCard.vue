@@ -1,6 +1,6 @@
 <template>
   <div class="debug__content"> 
-    <div class="card">
+    <div class="card" :class="cardcls">
       <div class="card-header">
         <h5>
           <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -18,6 +18,6 @@
 
 <script>
 export default {
-  props: ['title']
+  props: ['title', 'cardcls']
 }
 </script>

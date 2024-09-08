@@ -254,7 +254,7 @@ paket-files/
 .DS_Store
 
 # This folder would normally be ignored by the "Debug" rule
-!OidcDebugger/Views/Debug/
+!OidcDebugger/Pages/Debug/
 
 # Ignore dist assets
 OidcDebugger/wwwroot/bundle/
