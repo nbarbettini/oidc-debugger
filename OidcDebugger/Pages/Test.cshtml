@@ -1,0 +1,15 @@
+﻿@page
+@model OidcDebugger.Pages.TestModel
+@{
+}
+
+<dl>
+    <dt>Connection.RemoteIpAddress</dt>
+    <dd>@HttpContext.Connection.RemoteIpAddress</dd>
+    <dt>Connection.LocalIpAddress</dt>
+    <dt>Request.IsHttps</dt>
+    <dd>@HttpContext.Request.IsHttps</dd>
+    <dd>@HttpContext.Connection.LocalIpAddress</dd>
+    <dt>Connection.ClientCertificate.PublicKey.EncodedKeyValue</dt>
+    <dd>@HttpContext.Connection.ClientCertificate?.PublicKey.EncodedKeyValue</dd>
+</dl>
