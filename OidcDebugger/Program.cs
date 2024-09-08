@@ -15,10 +15,10 @@ builder.Services.AddMultiTenant<AppTenantInfo>()
 if (!builder.Environment.IsDevelopment())
 {
     // Require HTTPS for all pages by default
-    builder.Services.Configure<MvcOptions>(options =>
-    {
-        options.Filters.Add(new RequireHttpsAttribute());
-    });
+    //builder.Services.Configure<MvcOptions>(options =>
+    //{
+    //    options.Filters.Add(new RequireHttpsAttribute());
+    //});
 
     // Configure forwarded headers for Heroku's load balancer
     builder.Services.Configure<ForwardedHeadersOptions>(options =>
@@ -57,7 +57,7 @@ app.UseForwardedHeaders();
 
 app.UseMultiTenant();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseXfo(options => options.SameOrigin());
 app.UseXXssProtection(options => options.EnabledWithBlockMode());
