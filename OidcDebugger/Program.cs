@@ -1,6 +1,5 @@
 ﻿using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc;
 using OidcDebugger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,8 +55,6 @@ else
 app.UseForwardedHeaders();
 
 app.UseMultiTenant();
-
-//app.UseHttpsRedirection();
 
 app.UseXfo(options => options.SameOrigin());
 app.UseXXssProtection(options => options.EnabledWithBlockMode());
