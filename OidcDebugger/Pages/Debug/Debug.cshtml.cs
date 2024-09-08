@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OidcDebugger.Extensions;
 
 namespace OidcDebugger.Pages.Debug;
 

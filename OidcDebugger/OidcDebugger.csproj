@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<!--<PackageReference Include="BrunoLau.SpaServices" Version="8.0.0" />-->
     <PackageReference Include="NWebSec.AspNetCore.Middleware" Version="3.0.0" />
 	<PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="7.0.2" />
   </ItemGroup>
