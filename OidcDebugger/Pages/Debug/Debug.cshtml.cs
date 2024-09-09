@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OidcDebugger.Pages.Debug;
 
+[IgnoreAntiforgeryToken]
 public class DebugModel : PageModel
 {
     public string Method { get; set; } = "GET";
