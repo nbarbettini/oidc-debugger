@@ -3,8 +3,8 @@
     <div class="card" :class="cardcls">
       <div class="card-header">
         <h5>
-          <i class="fa fa-info-circle" aria-hidden="true"></i>
-          <strong>{{title}}</strong>
+          <i :class="['fa', icon]" aria-hidden="true"></i>
+          <strong>{{ title }}</strong>
         </h5>
       </div>
       <div class="card-body text-center">
@@ -18,6 +18,13 @@
 
 <script>
 export default {
-  props: ['title', 'cardcls']
+  props: {
+    title: String,
+    cardcls: String,
+    icon: {
+      type: String,
+      default: "fa-info-circle"
+    }
+  }
 }
 </script>

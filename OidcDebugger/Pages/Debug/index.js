@@ -2,8 +2,10 @@ import Vue from 'vue';
 import CodeCard from '../Shared/CodeCard.vue';
 import CopyButton from '../Shared/CopyButton.vue';
 import DecodedTokenCard from '../Shared/DecodedTokenCard.vue';
+import InfoCard from '../Shared/InfoCard.vue';
 import utils from '../Shared/utils.js';
 
+Vue.component('info-card', InfoCard);
 Vue.component('code-card', CodeCard);
 Vue.component('copy-button', CopyButton);
 Vue.component('decoded-token-card', DecodedTokenCard);
