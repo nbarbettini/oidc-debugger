@@ -97,10 +97,6 @@
                        v-bind:value="errorDescription.value">
                 {{safeUnescape(errorDescription.value) || '(no error description)'}}
             </code-card>
-
-            <info-card icon="fa-question-circle" title="Confused by @tenant.Noun?">
-                <p>Talk to an authorization expert: <a href="https://calendly.com/n80/30min">Schedule a call with Nate</a></p>
-            </info-card>
         </div>
 
         <div class="debug__callback-info" v-if="success && flow === 'code'">
