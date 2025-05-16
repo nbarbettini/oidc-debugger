@@ -7,8 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddMultiTenant<AppTenantInfo>()
-    .WithHostStrategy("__tenant__")
-    .WithConfigurationStore();
+    .WithStaticStrategy("oidc")
+    .WithInMemoryStore(config=>
+        config.Tenants.Add(new AppTenantInfo
+        {
+            Id = "oidc",
+            Identifier = "oidc",
+            Name = "OpenID Connect Debugger"
+        }));
 
 // In production, add some additional services
 if (!builder.Environment.IsDevelopment())
