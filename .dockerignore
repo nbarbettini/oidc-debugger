@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/wwwroot/bundle/
+.git/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo

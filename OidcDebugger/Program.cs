@@ -13,13 +13,7 @@ builder.Services.AddMultiTenant<AppTenantInfo>()
 // In production, add some additional services
 if (!builder.Environment.IsDevelopment())
 {
-    // Require HTTPS for all pages by default
-    //builder.Services.Configure<MvcOptions>(options =>
-    //{
-    //    options.Filters.Add(new RequireHttpsAttribute());
-    //});
-
-    // Configure forwarded headers for Heroku's load balancer
+    // Configure forwarded headers for the reverse proxy / load balancer
     builder.Services.Configure<ForwardedHeadersOptions>(options =>
     {
         options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
@@ -30,7 +24,7 @@ if (!builder.Environment.IsDevelopment())
     // Enable response compression
     builder.Services.AddResponseCompression();
 
-    // Configure strict HSTS 
+    // Configure strict HSTS
     builder.Services.AddHsts(opt =>
     {
         opt.MaxAge = TimeSpan.FromDays(365);
@@ -43,7 +37,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-
 }
 else
 {
@@ -56,9 +49,14 @@ app.UseForwardedHeaders();
 
 app.UseMultiTenant();
 
-app.UseXfo(options => options.SameOrigin());
-app.UseXXssProtection(options => options.EnabledWithBlockMode());
-app.UseXContentTypeOptions();
+// Security headers
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["X-Frame-Options"] = "SAMEORIGIN";
+    context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
+    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    await next();
+});
 
 app.UseStaticFiles();
 
